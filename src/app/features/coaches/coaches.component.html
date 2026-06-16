@@ -1,0 +1,30 @@
+<div class="public-page">
+  <app-public-header />
+
+  <main class="public-main">
+    <a routerLink="/" class="public-back">← На главную</a>
+
+    <div class="public-page-header">
+      <div class="public-eyebrow">Команда зала</div>
+      <h1 class="public-title">Тренеры <span class="brand-mark">GachaGo</span></h1>
+      <p class="public-desc">
+        Персональные планы, питание и сопровождение — каждый тренер ведёт атлетов в своей специализации.
+      </p>
+    </div>
+
+    <div class="public-grid4">
+      @for (coach of coaches; track coach.name) {
+        <article class="coach-card">
+          <div class="coach-banner">
+            <img class="coach-photo" [src]="coach.photo" [alt]="coach.name" loading="lazy" />
+          </div>
+          <div class="coach-body">
+            <div class="coach-name">{{ coach.name }}</div>
+            <div class="coach-role">{{ coach.role }}</div>
+            <p class="coach-bio">{{ coach.bio }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </main>
+</div>

@@ -1,0 +1,156 @@
+<div class="page-header">
+  <h1>Редактор постов</h1>
+  <p>Статьи и новости для блога зала</p>
+</div>
+
+<div class="gg-posts">
+  <aside class="editor">
+    <h2>Новая статья</h2>
+
+    <label class="field-label">Заголовок</label>
+    <input
+      type="text"
+      class="field-input"
+      placeholder="Например: 5 ошибок в становой тяге"
+      [(ngModel)]="title"
+    />
+
+    <label class="field-label">Категория</label>
+    <app-select-field class="field-select" [(ngModel)]="category" [options]="categories" />
+
+    <label class="field-label">Обложка</label>
+    <div class="cover-presets">
+      @for (preset of coverPresets; track preset) {
+        <button
+          type="button"
+          class="cover-preset"
+          [class.selected]="coverGradient === preset"
+          [style.background]="preset"
+          (click)="selectCover(preset, 'new')"
+          [attr.aria-label]="'Обложка ' + $index"
+        ></button>
+      }
+    </div>
+
+    <label class="field-label">Текст статьи</label>
+    <textarea
+      class="field-textarea field-textarea--body"
+      rows="5"
+      placeholder="Начните писать..."
+      [(ngModel)]="body"
+    ></textarea>
+
+    <div class="publish-toggle">
+      <div>
+        <div class="publish-toggle-title">Опубликовать сразу</div>
+        <div class="publish-toggle-hint">иначе сохранится как черновик</div>
+      </div>
+      <button
+        type="button"
+        class="toggle"
+        [class.toggle--on]="publishNow"
+        (click)="publishNow = !publishNow"
+        [attr.aria-pressed]="publishNow"
+        aria-label="Опубликовать сразу"
+      >
+        <span class="toggle-knob"></span>
+      </button>
+    </div>
+
+    <div class="editor-actions">
+      <button type="button" class="btn btn--ghost" (click)="saveDraft()">В черновики</button>
+      <button type="button" class="btn btn--primary" (click)="publish()">Опубликовать</button>
+    </div>
+  </aside>
+
+  <section class="list">
+    @if (stats$ | async; as stats) {
+      <div class="list-header">
+        <div class="list-title">Все статьи</div>
+        <span class="list-meta">
+          {{ stats.published }} опубликовано · {{ stats.draft }} черновика
+        </span>
+      </div>
+    }
+
+    <div class="list-items">
+      @for (post of posts$ | async; track post.id) {
+        <article class="post-card" [class.post-card--draft]="post.status === 'draft'">
+          @if (post.status === 'draft') {
+            <div class="post-thumb post-thumb--empty">—</div>
+          } @else {
+            <div class="post-thumb" [style.background]="post.coverGradient"></div>
+          }
+
+          <div class="post-body" (click)="openEdit(post)">
+            <div class="post-meta">
+              <span
+                class="post-category"
+                [class.post-category--muted]="post.status === 'draft'"
+              >
+                {{ post.category }}
+              </span>
+              <span class="post-date">{{ post.date }}</span>
+            </div>
+            <div class="post-title">{{ post.title }}</div>
+            <div class="post-excerpt">{{ post.excerpt }}</div>
+          </div>
+
+          <div class="post-actions">
+            <button
+              type="button"
+              class="status-badge"
+              [class.status-badge--draft]="post.status === 'draft'"
+              (click)="toggleStatus(post)"
+            >
+              <span class="status-dot"></span>
+              {{ post.status === 'published' ? 'опубликовано' : 'черновик' }}
+            </button>
+            <button type="button" class="edit-btn" (click)="openEdit(post)" title="Редактировать">✎</button>
+            <button
+              type="button"
+              class="delete-btn"
+              (click)="confirmDelete(post)"
+              aria-label="Удалить статью"
+            >
+              ✕
+            </button>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+</div>
+
+<app-modal [open]="editOpen" title="Редактировать статью" size="lg" (closed)="editOpen = false">
+  <label class="field-label">Заголовок</label>
+  <input class="field-input" [(ngModel)]="editTitle" />
+  <label class="field-label">Категория</label>
+  <app-select-field class="field-select" [(ngModel)]="editCategory" [options]="categories" />
+  <label class="field-label">Обложка</label>
+  <div class="cover-presets">
+    @for (preset of coverPresets; track preset) {
+      <button
+        type="button"
+        class="cover-preset"
+        [class.selected]="editCover === preset"
+        [style.background]="preset"
+        (click)="selectCover(preset, 'edit')"
+      ></button>
+    }
+  </div>
+  <label class="field-label">Текст</label>
+  <textarea class="field-textarea" rows="6" [(ngModel)]="editBody"></textarea>
+  <div modalActions>
+    <button type="button" class="btn-ghost" (click)="editOpen = false">Отмена</button>
+    <button type="button" class="btn-primary" (click)="saveEdit()">Сохранить</button>
+  </div>
+</app-modal>
+
+<app-modal [open]="deleteOpen" title="Удалить статью?" size="sm" (closed)="deleteOpen = false">
+  <p class="modal-text">Удалить «{{ deleting?.title }}»?</p>
+  <div modalActions>
+    <button type="button" class="btn-ghost" (click)="deleteOpen = false">Отмена</button>
+    <button type="button" class="btn-danger" (click)="deletePost()">Удалить</button>
+  </div>
+</app-modal>

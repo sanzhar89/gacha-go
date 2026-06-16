@@ -1,0 +1,50 @@
+<div class="select-field" [class.select-field--open]="open" [class.select-field--disabled]="disabled">
+  <button
+    #trigger
+    type="button"
+    class="select-field-trigger"
+    [attr.aria-expanded]="open"
+    [disabled]="disabled"
+    (click)="toggle($event)"
+  >
+    <span class="select-field-value">{{ value ? displayLabel() : placeholder() }}</span>
+    <span class="select-field-chevron-wrap" aria-hidden="true">
+      <svg
+        class="select-field-chevron"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M6 9l6 6 6-6" />
+      </svg>
+    </span>
+  </button>
+
+  @if (open) {
+    <ul
+      class="select-field-menu"
+      role="listbox"
+      [style.top.px]="menuTop"
+      [style.left.px]="menuLeft"
+      [style.width.px]="menuWidth"
+    >
+      @for (option of menuOptions(); track option.value) {
+        <li role="option" [attr.aria-selected]="option.value === value">
+          <button
+            type="button"
+            class="select-field-option"
+            [class.select-field-option--active]="option.value === value"
+            (click)="select(option.value, $event)"
+          >
+            {{ option.label }}
+          </button>
+        </li>
+      }
+    </ul>
+  }
+</div>

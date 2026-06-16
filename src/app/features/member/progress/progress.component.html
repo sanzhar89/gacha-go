@@ -1,0 +1,75 @@
+<div class="page-header">
+  <h1 class="page-title">Прогресс</h1>
+  <p class="page-subtitle">Динамика за последние 8 недель</p>
+</div>
+
+<div class="gg-prog">
+  <section class="chart-card calories-chart">
+    <div class="chart-header">
+      <h2 class="chart-title">Сожжённые калории</h2>
+      <span class="chart-meta">по неделям</span>
+    </div>
+    <div class="chart-canvas-wrap">
+      <canvas #caloriesCanvas></canvas>
+    </div>
+  </section>
+
+  <section class="chart-card frequency-chart">
+    <h2 class="chart-title">Частота</h2>
+    <div class="chart-meta block">тренировок в неделю</div>
+    <div class="freq-hero">{{ avgFrequency }}</div>
+    <div class="freq-goal">в среднем · цель 4</div>
+    <div class="chart-canvas-wrap frequency">
+      <canvas #frequencyCanvas></canvas>
+    </div>
+  </section>
+</div>
+
+<section class="weight-card">
+  <div class="weight-header">
+    <h2 class="chart-title">Вес тела</h2>
+    <div>
+      <span class="weight-value">78,4 кг</span>
+      <span class="weight-change">+2,1 кг за 8 недель</span>
+    </div>
+  </div>
+  <svg class="weight-svg" viewBox="0 0 720 200">
+    <line x1="0" y1="40" x2="720" y2="40" stroke="#232529" stroke-width="1" />
+    <line x1="0" y1="100" x2="720" y2="100" stroke="#232529" stroke-width="1" />
+    <line x1="0" y1="160" x2="720" y2="160" stroke="#232529" stroke-width="1" />
+    <polyline
+      points="20,150 120,140 220,138 320,120 420,108 520,96 620,78 700,70"
+      fill="none"
+      stroke="#4d8dff"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <polygon
+      points="20,150 120,140 220,138 320,120 420,108 520,96 620,78 700,70 700,200 20,200"
+      fill="rgba(77,141,255,0.08)"
+    />
+    <circle cx="700" cy="70" r="5" fill="#4d8dff" />
+    <circle cx="20" cy="150" r="4" fill="#1e2026" stroke="#ff9a6b" stroke-width="2.5" />
+  </svg>
+  <div class="weight-labels">
+    <span>Апр</span>
+    <span>Май</span>
+    <span>Июнь</span>
+  </div>
+</section>
+
+<div class="pr-grid">
+  @for (pr of personalRecords; track pr.label) {
+    <article class="pr-card">
+      <div class="pr-label">{{ pr.label }}</div>
+      <div class="pr-value">
+        {{ pr.value }}
+        @if (pr.unit) {
+          <span class="pr-unit">{{ pr.unit }}</span>
+        }
+      </div>
+      <div class="pr-change">{{ pr.change }}</div>
+    </article>
+  }
+</div>

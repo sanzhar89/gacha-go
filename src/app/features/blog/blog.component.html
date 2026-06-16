@@ -1,0 +1,31 @@
+<div class="public-page">
+  <app-public-header />
+
+  <main class="public-main">
+    <a routerLink="/" class="public-back">← На главную</a>
+
+    <div class="public-page-header">
+      <div class="public-eyebrow">Журнал зала</div>
+      <h1 class="public-title">Блог и новости</h1>
+      <p class="public-desc">
+        Статьи о тренировках, питании и историях атлетов — всё, что помогает прокачиваться осознанно.
+      </p>
+    </div>
+
+    <div class="public-grid3">
+      @for (post of blogPosts; track post.id) {
+        <a [routerLink]="['/blog', post.id]" class="blog-card">
+          <div class="blog-cover">
+            <img class="blog-photo" [src]="post.cover" [alt]="post.title" loading="lazy" />
+            <span class="blog-tag" [class.blog-tag--dark]="post.categoryDark">{{ post.category }}</span>
+          </div>
+          <div class="blog-body">
+            <div class="blog-meta">{{ post.date }} · {{ post.readTime }}</div>
+            <h2 class="blog-title">{{ post.title }}</h2>
+            <p class="blog-excerpt">{{ post.excerpt }}</p>
+          </div>
+        </a>
+      }
+    </div>
+  </main>
+</div>

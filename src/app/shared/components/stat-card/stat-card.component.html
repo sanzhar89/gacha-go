@@ -1,0 +1,13 @@
+<div class="stat-header">
+  <span class="stat-label">{{ label }}</span>
+  <ng-content select="[icon]"></ng-content>
+</div>
+<div class="stat-value">
+  {{ value }}
+  @if (suffix) {
+    <span class="stat-suffix">{{ suffix }}</span>
+  }
+</div>
+@if (sublabel) {
+  <div class="stat-sublabel" [class.accent]="sublabelAccent">{{ sublabel }}</div>
+}

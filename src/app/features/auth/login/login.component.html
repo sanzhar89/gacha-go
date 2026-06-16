@@ -1,0 +1,46 @@
+<div class="auth-page">
+  <a routerLink="/" class="auth-logo">
+    <span class="auth-logo-icon">G</span>
+    <span class="auth-logo-text">GachaGo</span>
+  </a>
+
+  <div class="auth-card">
+    <h1 class="auth-title">Вход</h1>
+    <p class="auth-subtitle">С возвращением! Продолжай копить XP.</p>
+
+    <form class="auth-form" (ngSubmit)="submit()">
+      <label class="auth-label">Email</label>
+      <input
+        class="auth-input"
+        type="email"
+        name="email"
+        [(ngModel)]="email"
+        placeholder="you@email.com"
+        autocomplete="email"
+      />
+
+      <label class="auth-label">Пароль</label>
+      <input
+        class="auth-input"
+        type="password"
+        name="password"
+        [(ngModel)]="password"
+        placeholder="••••••••"
+        autocomplete="current-password"
+      />
+
+      @if (error()) {
+        <p class="auth-error">{{ error() }}</p>
+      }
+
+      <button type="submit" class="auth-submit">Войти</button>
+    </form>
+
+    <p class="auth-hint">Демо: demo@gachago.kz · любой пароль</p>
+
+    <p class="auth-switch">
+      Нет аккаунта?
+      <a routerLink="/register">Зарегистрироваться</a>
+    </p>
+  </div>
+</div>

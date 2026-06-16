@@ -1,0 +1,31 @@
+<div class="xp-labels">
+  <span class="xp-label">{{ label }}</span>
+  <span class="xp-values">
+    {{ currentXp | number }} <span class="xp-target">/ {{ targetXp | number }} XP</span>
+  </span>
+</div>
+<div class="xp-track">
+  <div class="xp-fill" [style.--ggw.%]="percent">
+    <div class="xp-shimmer" [style.animation-delay]="shimmerDelay"></div>
+  </div>
+</div>
+@if (showStreak) {
+  <div class="xp-streak">
+    <div class="streak-left">
+      <span class="streak-emoji">🔥</span>
+      <div>
+        <div class="streak-days">{{ streakDays }} дней</div>
+        <div class="streak-sub">текущая серия</div>
+      </div>
+    </div>
+    <div class="streak-bars">
+      @for (bar of [1, 2, 3, 4, 5, 6, 7]; track bar) {
+        <span
+          class="streak-bar"
+          [class.active]="bar <= 5"
+          [class.partial]="bar === 6"
+        ></span>
+      }
+    </div>
+  </div>
+}

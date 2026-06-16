@@ -1,0 +1,110 @@
+@if (plan(); as plan) {
+  <div class="page-header">
+    <h1 class="page-title">Питание</h1>
+    <p class="page-subtitle">
+      План от тренера <span class="accent">{{ plan.assignedBy }}</span> · цель: {{ plan.goal }}
+    </p>
+  </div>
+
+  <div class="gg-nutri">
+    <aside class="nutri-targets">
+      <div class="target-card calories-card">
+        <div class="target-label">Дневная норма</div>
+        <div class="calories-value">{{ formatNumber(plan.caloriesTarget) }}</div>
+        <div class="calories-meta">ккал · съедено {{ formatNumber(plan.caloriesEaten) }}</div>
+        <div class="progress-track">
+          <div class="progress-fill calories" [style.width.%]="caloriesProgress(plan)"></div>
+        </div>
+      </div>
+
+      <div class="target-card macros-card">
+        <div class="macros-title">Баланс БЖУ</div>
+        <div class="macro-list">
+          <div class="macro-row">
+            <div class="macro-header">
+              <span>Белки</span>
+              <span>{{ plan.macrosProgress.protein }} / {{ plan.macros.protein }} г</span>
+            </div>
+            <div class="progress-track">
+              <div
+                class="progress-fill protein"
+                [style.width.%]="macroPercent(plan.macrosProgress.protein, plan.macros.protein)"
+              ></div>
+            </div>
+          </div>
+          <div class="macro-row">
+            <div class="macro-header">
+              <span>Жиры</span>
+              <span>{{ plan.macrosProgress.fat }} / {{ plan.macros.fat }} г</span>
+            </div>
+            <div class="progress-track">
+              <div
+                class="progress-fill fat"
+                [style.width.%]="macroPercent(plan.macrosProgress.fat, plan.macros.fat)"
+              ></div>
+            </div>
+          </div>
+          <div class="macro-row">
+            <div class="macro-header">
+              <span>Углеводы</span>
+              <span>{{ plan.macrosProgress.carbs }} / {{ plan.macros.carbs }} г</span>
+            </div>
+            <div class="progress-track">
+              <div
+                class="progress-fill carbs"
+                [style.width.%]="macroPercent(plan.macrosProgress.carbs, plan.macros.carbs)"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <section class="nutri-meals">
+      @for (meal of plan.meals; track meal.id) {
+        <article
+          class="meal-card"
+          [class.planned]="meal.planned"
+          [class.logged]="!meal.planned && isMealLogged(meal.id)"
+        >
+          <div class="meal-header">
+            <div class="meal-title-row">
+              <button
+                type="button"
+                class="meal-check"
+                [class.checked]="isMealLogged(meal.id)"
+                [disabled]="meal.planned"
+                (click)="toggleMeal(meal.id)"
+                [attr.aria-pressed]="isMealLogged(meal.id)"
+              >
+                @if (isMealLogged(meal.id)) {
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0A0D14" stroke-width="3" stroke-linecap="round">
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg>
+                }
+              </button>
+              <span class="meal-emoji">{{ meal.emoji }}</span>
+              <span class="meal-name">{{ meal.name }}</span>
+            </div>
+            @if (meal.planned) {
+              <span class="meal-planned">запланировано · {{ formatNumber(meal.plannedCalories ?? 0) }} ккал</span>
+            } @else {
+              <span class="meal-calories">{{ formatNumber(meal.calories) }} ккал</span>
+            }
+          </div>
+
+          @if (!meal.planned && meal.items.length) {
+            <div class="meal-items">
+              @for (item of meal.items; track item.name) {
+                <div class="meal-item">
+                  <span>{{ item.name }}</span>
+                  <span class="item-calories">{{ item.calories }} ккал</span>
+                </div>
+              }
+            </div>
+          }
+        </article>
+      }
+    </section>
+  </div>
+}

@@ -1,0 +1,287 @@
+<div class="gg-landing">
+
+  <!-- NAV -->
+  <header class="gg-header">
+    <div class="gg-header-inner">
+      <a routerLink="/" class="gg-logo">
+        <span class="gg-logo-icon">
+          <span class="gg-logo-icon-letter">G</span>
+        </span>
+        <span class="gg-logo-text">GachaGo</span>
+      </a>
+      <nav class="gg-nav">
+        <div class="gg-navlinks">
+          <a href="#features" class="gg-navlink">Возможности</a>
+          <a href="#how" class="gg-navlink">Как это работает</a>
+          <a href="#coaches" class="gg-navlink">Тренеры</a>
+          <a href="#blog" class="gg-navlink">Блог</a>
+        </div>
+      </nav>
+      <div class="gg-header-actions">
+        <a [routerLink]="loginLink" class="gg-btn-ghost">Войти</a>
+        <a [routerLink]="startLink" class="gg-btn-primary">Начать бесплатно</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="gg-hero-section">
+    <div class="gg-hero-bg">
+      <div class="gg-hero-glow-warm"></div>
+      <div class="gg-hero-glow-cool"></div>
+      <div class="gg-hero-dots"></div>
+    </div>
+
+    <div class="gg-hero">
+      <div>
+        <div class="gg-badge">
+          <span class="gg-badge-dot"></span>
+          Фитнес как игра
+        </div>
+        <h1 class="gg-hero-title">
+          Тренируйся.<br>Отслеживай.<br><span class="gg-hero-title-accent">Прокачивайся.</span>
+        </h1>
+        <p class="gg-hero-desc">
+          Каждая тренировка — это опыт. Копи XP, держи серию, поднимайся в лигах. Планы от тренеров, журнал, питание и прогресс — в одном приложении.
+        </p>
+        <div class="gg-hero-cta">
+          <a [routerLink]="startLink" class="gg-btn-hero-primary">Создать персонажа</a>
+          <a href="#how" class="gg-btn-hero-secondary">Как это работает →</a>
+        </div>
+        <div class="gg-hero-stats">
+          <div>
+            <div class="gg-stat-value">12 400+</div>
+            <div class="gg-stat-label">атлетов в лигах</div>
+          </div>
+          <div class="gg-stat-divider"></div>
+          <div>
+            <div class="gg-stat-value">1,8 млн</div>
+            <div class="gg-stat-label">тренировок в журнале</div>
+          </div>
+          <div class="gg-stat-divider"></div>
+          <div>
+            <div class="gg-stat-value">96%</div>
+            <div class="gg-stat-label">держат серию</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHARACTER / XP CARD -->
+      <div class="gg-hero-card-wrap">
+        <div class="gg-hero-card">
+          <div class="gg-hero-card-accent"></div>
+          <div class="gg-hero-card-header">
+            <div class="gg-avatar">АВ</div>
+            <div class="gg-hero-card-info">
+              <div class="gg-hero-card-name">Артём Волков</div>
+              <div class="gg-hero-card-league">Силовая лига · Дивизион II</div>
+            </div>
+            <div class="gg-lvl-box">
+              <div class="gg-lvl-label">LVL</div>
+              <div class="gg-lvl-value">12</div>
+            </div>
+          </div>
+
+          <!-- XP BAR -->
+          <div class="gg-xp-header">
+            <span class="gg-xp-label">Прогресс уровня</span>
+            <span class="gg-xp-value">1 360 <span class="gg-xp-value-dim">/ 2 000 XP</span></span>
+          </div>
+          <div class="gg-xp-track">
+            <div class="gg-xp-fill">
+              <div class="gg-xp-shimmer"></div>
+            </div>
+          </div>
+          <div class="gg-streak-row">
+            <div class="gg-streak-info">
+              <span class="gg-streak-emoji">🔥</span>
+              <div>
+                <div class="gg-streak-days">14 дней</div>
+                <div class="gg-streak-label">текущая серия</div>
+              </div>
+            </div>
+            <div class="gg-streak-bars">
+              <span class="gg-streak-bar gg-streak-bar--active"></span>
+              <span class="gg-streak-bar gg-streak-bar--active"></span>
+              <span class="gg-streak-bar gg-streak-bar--active"></span>
+              <span class="gg-streak-bar gg-streak-bar--active"></span>
+              <span class="gg-streak-bar gg-streak-bar--active"></span>
+              <span class="gg-streak-bar gg-streak-bar--mid"></span>
+              <span class="gg-streak-bar gg-streak-bar--inactive"></span>
+            </div>
+          </div>
+          <div class="gg-mini-stats">
+            <div class="gg-mini-stat">
+              <div class="gg-mini-stat-value gg-mini-stat-value--accent">4</div>
+              <div class="gg-mini-stat-label">тренировки</div>
+            </div>
+            <div class="gg-mini-stat">
+              <div class="gg-mini-stat-value">3 240</div>
+              <div class="gg-mini-stat-label">ккал за неделю</div>
+            </div>
+            <div class="gg-mini-stat">
+              <div class="gg-mini-stat-value">5,2 ч</div>
+              <div class="gg-mini-stat-label">под нагрузкой</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="gg-section">
+    <div class="gg-section-header">
+      <div class="gg-eyebrow">Всё в одном месте</div>
+      <h2 class="gg-section-title">Три инструмента, одна цель</h2>
+    </div>
+    <div class="gg-grid3">
+      <div class="gg-card">
+        <div class="gg-icon-box gg-icon-box--blue">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4d8dff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 12l2 2 4-4"></path>
+            <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+            <path d="M3 9h18"></path>
+          </svg>
+        </div>
+        <h3 class="gg-card-title">Планы тренировок</h3>
+        <p class="gg-card-text">Персональные программы от тренера на каждый день недели — упражнения, подходы, повторения и заметки. Открываешь приложение и точно знаешь, что делать.</p>
+      </div>
+      <div class="gg-card">
+        <div class="gg-icon-box gg-icon-box--warm">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff9a6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20V10"></path>
+            <path d="M18 20V4"></path>
+            <path d="M6 20v-4"></path>
+          </svg>
+        </div>
+        <h3 class="gg-card-title">Журнал тренировок</h3>
+        <p class="gg-card-text">Фиксируй тип нагрузки, время, калории, дистанцию и упражнения. Каждая запись приносит XP и держит серию. История всегда под рукой.</p>
+      </div>
+      <div class="gg-card">
+        <div class="gg-icon-box gg-icon-box--blue">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4d8dff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+            <path d="M16 2v4M8 2v4M3 10h18"></path>
+          </svg>
+        </div>
+        <h3 class="gg-card-title">Календарь активности</h3>
+        <p class="gg-card-text">Месяц с отмеченными днями тренировок наглядно показывает ритм. Видишь пропуски, гордишься сериями и планируешь восстановление.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="gg-how-section">
+    <div class="gg-how-bg"></div>
+    <div class="gg-how-inner">
+      <div class="gg-how-header">
+        <div class="gg-eyebrow">Старт за минуты</div>
+        <h2 class="gg-section-title">Как это работает</h2>
+      </div>
+      <div class="gg-grid3">
+        <div class="gg-card gg-card--step">
+          <div class="gg-step-num">
+            <span class="gg-step-label">Шаг</span>
+            <span class="gg-step-index">01</span>
+          </div>
+          <h3 class="gg-card-title gg-card-title--lg">Создай персонажа</h3>
+          <p class="gg-card-text">Заполни цели и стартовые данные. Получи уровень, лигу и первый план от тренера.</p>
+        </div>
+        <div class="gg-card gg-card--step">
+          <div class="gg-step-num">
+            <span class="gg-step-label">Шаг</span>
+            <span class="gg-step-index">02</span>
+          </div>
+          <h3 class="gg-card-title gg-card-title--lg">Тренируйся и записывай</h3>
+          <p class="gg-card-text">Выполняй план, фиксируй результат в журнале. Каждая запись — это XP и продление серии.</p>
+        </div>
+        <div class="gg-card gg-card--step">
+          <div class="gg-step-num">
+            <span class="gg-step-label">Шаг</span>
+            <span class="gg-step-index">03</span>
+          </div>
+          <h3 class="gg-card-title gg-card-title--lg">Прокачивайся в лигах</h3>
+          <p class="gg-card-text">Набирай уровни, поднимайся в дивизионах и следи за прогрессом на графиках.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COACHES -->
+  <section id="coaches" class="gg-section">
+    <div class="gg-section-row">
+      <div>
+        <div class="gg-eyebrow">Команда зала</div>
+        <h2 class="gg-section-title">Тренеры <span class="brand-mark">GachaGo</span></h2>
+      </div>
+      <a routerLink="/coaches" class="gg-link-accent">Все тренеры →</a>
+    </div>
+    <div class="gg-grid4">
+      @for (coach of coaches; track coach.name) {
+        <article class="gg-coach-card">
+          <div class="gg-coach-banner">
+            <img class="gg-coach-photo" [src]="coach.photo" [alt]="coach.name" loading="lazy" />
+          </div>
+          <div class="gg-coach-body">
+            <div class="gg-coach-name">{{ coach.name }}</div>
+            <div class="gg-coach-role">{{ coach.role }}</div>
+            <p class="gg-coach-bio">{{ coach.bio }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section id="blog" class="gg-section">
+    <div class="gg-section-row">
+      <div>
+        <div class="gg-eyebrow">Журнал зала</div>
+        <h2 class="gg-section-title">Блог и новости</h2>
+      </div>
+      <a routerLink="/blog" class="gg-link-accent">Все статьи →</a>
+    </div>
+    <div class="gg-grid3">
+      @for (post of blogPosts; track post.id) {
+        <a [routerLink]="['/blog', post.id]" class="gg-blog-card">
+          <div class="gg-blog-cover">
+            <img class="gg-blog-photo" [src]="post.cover" [alt]="post.title" loading="lazy" />
+            <span class="gg-blog-tag" [class.gg-blog-tag--dark]="post.categoryDark">{{ post.category }}</span>
+          </div>
+          <div class="gg-blog-body">
+            <div class="gg-blog-meta">{{ post.date }} · {{ post.readTime }}</div>
+            <h3 class="gg-blog-title">{{ post.title }}</h3>
+            <p class="gg-blog-excerpt">{{ post.excerpt }}</p>
+          </div>
+        </a>
+      }
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="gg-cta-section">
+    <div class="gg-cta-banner">
+      <div class="gg-cta-overlay" aria-hidden="true"></div>
+      <div class="gg-cta-content">
+        <h2 class="gg-cta-title">Готов прокачаться?</h2>
+        <p class="gg-cta-desc">Первая неделя бесплатно. Создай персонажа, получи план и начни копить XP уже сегодня.</p>
+        <a [routerLink]="startLink" class="gg-btn-cta">Начать бесплатно</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="gg-footer">
+    <div class="gg-footer-inner">
+      <div class="gg-footer-logo">
+        <span class="gg-footer-logo-icon">
+          <span class="gg-footer-logo-letter">G</span>
+        </span>
+        <span class="gg-footer-logo-text">GachaGo</span>
+      </div>
+      <div class="gg-footer-copy">© 2026 <span class="brand-mark">GachaGo</span></div>
+    </div>
+  </footer>
+
+</div>

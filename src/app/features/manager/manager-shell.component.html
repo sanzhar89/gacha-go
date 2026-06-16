@@ -1,0 +1,14 @@
+<div class="shell">
+  <app-sidebar [config]="config" />
+  <main class="shell-main">
+    <app-topbar
+      title="GachaGo Almaty · ул. Сатпаева 22"
+      badge="287 активных за месяц"
+      [badgePulse]="true"
+      [showNotifications]="true"
+    />
+    <div class="shell-content">
+      <router-outlet />
+    </div>
+  </main>
+</div>

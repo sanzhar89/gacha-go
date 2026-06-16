@@ -1,0 +1,164 @@
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Мои ученики</h1>
+    <p class="page-subtitle">{{ subtitle }}</p>
+  </div>
+  <button type="button" class="btn-primary" (click)="openAdd()">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+      <path d="M12 5v14M5 12h14" />
+    </svg>
+    Добавить ученика
+  </button>
+</div>
+
+<div class="student-grid">
+  @for (student of students$ | async; track student.id) {
+    <article class="student-card" [class.dimmed]="student.dimmed">
+      <div class="student-header">
+        <div
+          class="student-avatar"
+          [style.background]="student.avatarGradient"
+          [style.color]="student.avatarTextColor"
+        >
+          {{ student.initials }}
+        </div>
+        <div class="student-info">
+          <div class="student-name">{{ student.name }}</div>
+          <div class="student-meta">{{ student.goal }} · LVL {{ student.level }}</div>
+        </div>
+        @if (student.active) {
+          <span class="status status--active">
+            <span class="status-dot"></span>
+            {{ student.initials.startsWith('М') ? 'активна' : 'активен' }}
+          </span>
+        } @else {
+          <span class="status status--inactive">
+            <span class="status-dot"></span>
+            {{ student.inactiveLabel }}
+          </span>
+        }
+      </div>
+
+      <div class="student-stats">
+        <div class="stat">
+          <div class="stat-value">{{ student.completion }}%</div>
+          <div class="stat-label">выполнение</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">🔥 {{ student.streak }}</div>
+          <div class="stat-label">серия</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">{{ student.weekProgress }}</div>
+          <div class="stat-label">за неделю</div>
+        </div>
+      </div>
+
+      <div class="student-actions">
+        <div class="student-actions-main">
+          @if (!student.active) {
+            <button type="button" class="action-btn action-btn--warn" (click)="openMessage(student)">Написать</button>
+            <a
+              class="action-btn action-btn--outline"
+              [routerLink]="['/trainer/workout-builder']"
+              [queryParams]="{ student: student.id }"
+            >
+              Тренировки
+            </a>
+          } @else {
+            <a
+              class="action-btn action-btn--primary"
+              [routerLink]="['/trainer/workout-builder']"
+              [queryParams]="{ student: student.id }"
+            >
+              Тренировки
+            </a>
+            <a
+              class="action-btn action-btn--outline"
+              [routerLink]="['/trainer/nutrition-builder']"
+              [queryParams]="{ student: student.id }"
+            >
+              Питание
+            </a>
+          }
+        </div>
+        <div class="student-actions-tools">
+          <button type="button" class="btn-icon" (click)="openEdit(student)" title="Редактировать">✎</button>
+          <button type="button" class="btn-icon btn-icon--danger" (click)="confirmDelete(student)" title="Удалить">✕</button>
+        </div>
+      </div>
+    </article>
+  }
+</div>
+
+<app-modal
+  [open]="formOpen"
+  [title]="editing ? 'Редактировать ученика' : 'Новый ученик'"
+  (closed)="formOpen = false"
+>
+  <label class="field-label">Ученик</label>
+  @if (editing) {
+    <input class="field-input field-input--readonly" [value]="formName" readonly />
+  } @else if (candidateOptions.length === 0) {
+    <p class="form-hint">Все доступные ученики уже добавлены в ваш список.</p>
+  } @else {
+    <app-select-field
+      class="form-select"
+      [(ngModel)]="formCandidateId"
+      [items]="candidateOptions"
+      placeholder="Выберите ученика"
+      (ngModelChange)="onCandidateSelected($event)"
+    />
+  }
+
+  <label class="field-label">Цель</label>
+  <input class="field-input" [(ngModel)]="formGoal" placeholder="Набор массы" />
+
+  <label class="field-label">Уровень</label>
+  <input
+    class="field-input field-input--readonly"
+    type="text"
+    [value]="formLevel"
+    readonly
+    [class.field-input--empty]="!formCandidateId && !editing"
+  />
+
+  <label class="field-label">Email</label>
+  <input
+    class="field-input field-input--readonly"
+    type="email"
+    [value]="formEmail"
+    readonly
+    placeholder="Выберите ученика"
+    [class.field-input--empty]="!formEmail"
+  />
+
+  <div modalActions class="modal-actions-spaced">
+    <button type="button" class="btn-ghost" (click)="formOpen = false">Отмена</button>
+    <button
+      type="button"
+      class="btn-primary"
+      (click)="saveStudent()"
+      [disabled]="!editing && !formCandidateId"
+    >
+      Сохранить
+    </button>
+  </div>
+</app-modal>
+
+<app-modal [open]="messageOpen" title="Написать ученику" (closed)="messageOpen = false">
+  <p class="modal-text">Сообщение для <strong>{{ messaging?.name }}</strong></p>
+  <textarea class="field-textarea" rows="4" [(ngModel)]="messageText"></textarea>
+  <div modalActions class="modal-actions-spaced">
+    <button type="button" class="btn-ghost" (click)="messageOpen = false">Отмена</button>
+    <button type="button" class="btn-primary" (click)="sendMessage()">Отправить</button>
+  </div>
+</app-modal>
+
+<app-modal [open]="deleteOpen" title="Удалить ученика?" size="sm" (closed)="deleteOpen = false">
+  <p class="modal-text">Удалить {{ deleting?.name }} из списка?</p>
+  <div modalActions class="modal-actions-spaced">
+    <button type="button" class="btn-ghost" (click)="deleteOpen = false">Отмена</button>
+    <button type="button" class="btn-danger" (click)="deleteStudent()">Удалить</button>
+  </div>
+</app-modal>

@@ -1,0 +1,104 @@
+<div class="page-header">
+  <h1 class="page-title">Конструктор питания</h1>
+  <p class="page-subtitle">
+    План питания для <span class="accent">{{ selectedStudent.name }}</span> · {{ selectedStudent.goal }}
+  </p>
+</div>
+
+<div class="student-selector">
+  <div class="section-label">Ученик</div>
+  <div class="student-pills">
+    @for (student of students; track student.id) {
+      <button
+        type="button"
+        class="student-pill"
+        [class.active]="isStudentActive(student.id)"
+        (click)="selectStudent(student.id)"
+      >
+        {{ student.name }}
+      </button>
+    }
+  </div>
+</div>
+
+<div class="nutrition-layout">
+  <aside class="targets-panel">
+    <h2 class="panel-title">Цели по нутриентам</h2>
+
+    <label class="field-label">Калории в день</label>
+    <div class="calories-field">
+      <input
+        type="number"
+        class="calories-input"
+        [(ngModel)]="caloriesTarget"
+        inputmode="numeric"
+      />
+      <span class="calories-unit">ккал</span>
+    </div>
+
+    <div class="macro-fields">
+      <div>
+        <label class="field-label">Белки, г</label>
+        <input type="number" class="macro-input" [(ngModel)]="protein" />
+      </div>
+      <div>
+        <label class="field-label">Жиры, г</label>
+        <input type="number" class="macro-input" [(ngModel)]="fat" />
+      </div>
+      <div>
+        <label class="field-label">Углеводы, г</label>
+        <input type="number" class="macro-input" [(ngModel)]="carbs" />
+      </div>
+    </div>
+
+    <button type="button" class="save-btn" (click)="savePlan()">Сохранить план</button>
+    @if (saved) {
+      <p class="save-hint">План сохранён</p>
+    }
+  </aside>
+
+  <div class="meals-panel">
+    @for (meal of meals; track meal.id; let mi = $index) {
+      <div class="meal-card">
+        <div class="meal-header">
+          <input type="text" class="meal-name" [(ngModel)]="meal.name" />
+          <span class="meal-calories">{{ mealCalories(meal) }} ккал</span>
+          <button type="button" class="meal-remove" (click)="removeMeal(mi)" title="Удалить приём">×</button>
+        </div>
+
+        <div class="meal-items">
+          @for (item of meal.items; track $index; let ii = $index) {
+            <div class="meal-item">
+              <input type="text" class="item-name" [(ngModel)]="item.name" placeholder="Продукт" />
+              <input type="text" class="item-portion" [(ngModel)]="item.portion" placeholder="Порция" />
+              <input type="number" class="item-calories" [(ngModel)]="item.calories" />
+              <span class="item-calories-label">ккал</span>
+              <button
+                type="button"
+                class="item-remove"
+                (click)="removeProduct(mi, ii)"
+                aria-label="Удалить продукт"
+              >
+                ×
+              </button>
+            </div>
+          }
+        </div>
+
+        <button type="button" class="add-product-btn" (click)="addProduct(mi)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M12 5v14M5 12h14" />
+          </svg>
+          Добавить продукт
+        </button>
+      </div>
+    }
+
+    <button type="button" class="add-meal-btn" (click)="addMeal()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M12 5v14M5 12h14" />
+      </svg>
+      Добавить приём пищи
+    </button>
+  </div>
+</div>

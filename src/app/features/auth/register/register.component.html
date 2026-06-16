@@ -1,0 +1,64 @@
+<div class="auth-page">
+  <a routerLink="/" class="auth-logo">
+    <span class="auth-logo-icon">G</span>
+    <span class="auth-logo-text">GachaGo</span>
+  </a>
+
+  <div class="auth-card">
+    <h1 class="auth-title">Регистрация</h1>
+    <p class="auth-subtitle">Создай персонажа и получи первый план от тренера.</p>
+
+    <form class="auth-form" (ngSubmit)="submit()">
+      <label class="auth-label">Имя и фамилия</label>
+      <input
+        class="auth-input"
+        type="text"
+        name="name"
+        [(ngModel)]="name"
+        placeholder="Артём Волков"
+        autocomplete="name"
+      />
+
+      <label class="auth-label">Email</label>
+      <input
+        class="auth-input"
+        type="email"
+        name="email"
+        [(ngModel)]="email"
+        placeholder="you@email.com"
+        autocomplete="email"
+      />
+
+      <label class="auth-label">Пароль</label>
+      <input
+        class="auth-input"
+        type="password"
+        name="password"
+        [(ngModel)]="password"
+        placeholder="минимум 6 символов"
+        autocomplete="new-password"
+      />
+
+      <label class="auth-label">Повторите пароль</label>
+      <input
+        class="auth-input"
+        type="password"
+        name="confirmPassword"
+        [(ngModel)]="confirmPassword"
+        placeholder="••••••••"
+        autocomplete="new-password"
+      />
+
+      @if (error()) {
+        <p class="auth-error">{{ error() }}</p>
+      }
+
+      <button type="submit" class="auth-submit">Создать аккаунт</button>
+    </form>
+
+    <p class="auth-switch">
+      Уже есть аккаунт?
+      <a routerLink="/login">Войти</a>
+    </p>
+  </div>
+</div>

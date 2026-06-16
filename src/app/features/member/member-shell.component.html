@@ -1,0 +1,9 @@
+<div class="shell">
+  <app-sidebar [config]="config()" />
+  <main class="shell-main">
+    <app-topbar title="Личный кабинет" [streak]="14" [showNotifications]="true" />
+    <div class="shell-content">
+      <router-outlet />
+    </div>
+  </main>
+</div>

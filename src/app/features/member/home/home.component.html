@@ -1,0 +1,116 @@
+<div class="page-header">
+  <h1 class="page-title">{{ greeting() }}</h1>
+  <p class="page-subtitle">Понедельник, 15 июня 2026 · продолжай серию</p>
+</div>
+
+@if (progress(); as p) {
+  <section class="xp-hero">
+    <div class="xp-hero-glow"></div>
+    <div class="xp-hero-inner">
+      <div class="xp-hero-main">
+        <div class="xp-level-row">
+          <span class="xp-level">Уровень {{ p.level }}</span>
+          <span class="xp-league">{{ league }}</span>
+        </div>
+        <app-xp-bar
+          [streakDays]="p.streakDays"
+          [percent]="xpPercent()"
+          [currentXp]="p.currentXp"
+          [targetXp]="p.targetXp"
+          label="До {{ p.level + 1 }} уровня"
+          [showStreak]="false"
+        />
+      </div>
+      <div class="xp-streak-card">
+        <span class="xp-streak-emoji">🔥</span>
+        <div>
+          <div class="xp-streak-value">{{ p.streakDays }} дней</div>
+          <div class="xp-streak-meta">серия тренировок · рекорд {{ p.streakRecord }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <h2 class="section-title">Статистика недели</h2>
+  <div class="stats-grid">
+    @for (stat of weekStats(); track stat.label) {
+      <app-stat-card
+        [label]="stat.label"
+        [value]="stat.value"
+        [suffix]="stat.suffix ?? ''"
+        [sublabel]="stat.sublabel"
+        [sublabelAccent]="stat.sublabelAccent"
+      >
+        @switch (stat.label) {
+          @case ('Тренировки') {
+            <svg icon width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4d8dff" stroke-width="2" stroke-linecap="round">
+              <path d="M6.5 6.5l11 11M21 21l-1-1M3 3l1 1M18 22l4-4M2 6l4-4M6 18l-4 4" />
+            </svg>
+          }
+          @case ('Калории') {
+            <svg icon width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF7849" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2s4 4 4 8a4 4 0 0 1-8 0c0-2 2-4 2-6 0 0 2 2 2 4" />
+            </svg>
+          }
+          @case ('Время') {
+            <svg icon width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff9a6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 7v5l3 2" />
+            </svg>
+          }
+          @case ('Дистанция') {
+            <svg icon width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4d8dff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z" />
+              <circle cx="12" cy="10" r="2.5" />
+            </svg>
+          }
+        }
+      </app-stat-card>
+    }
+  </div>
+}
+
+@if (todayPlan(); as plan) {
+  <section class="today-plan">
+    <div class="today-plan-header">
+      <div>
+        <h2 class="today-plan-title">План на сегодня</h2>
+        <div class="today-plan-meta">
+          Тренер: <span class="accent">{{ plan.trainerName }}</span> · {{ plan.focus }}
+        </div>
+      </div>
+      <a routerLink="/member/journal" class="journal-btn">Записать в журнал</a>
+    </div>
+
+    <div class="exercise-list">
+      @for (exercise of plan.exercises; track exercise.id) {
+        <div class="exercise-row">
+          <button
+            type="button"
+            class="exercise-check"
+            [class.done]="exercise.completed"
+            (click)="toggleExercise(exercise.id)"
+            [attr.aria-pressed]="exercise.completed"
+          >
+            @if (exercise.completed) {
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0A0D14" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6L9 17l-5-5" />
+              </svg>
+            }
+          </button>
+          <div class="exercise-info">
+            <div class="exercise-name" [class.done-text]="exercise.completed">{{ exercise.name }}</div>
+            <div class="exercise-detail">
+              {{ exercise.sets }} подхода × {{ exercise.reps }} повторений · отдых {{ exercise.rest }}
+            </div>
+          </div>
+          <span class="exercise-weight">{{ exercise.weight }}</span>
+        </div>
+      }
+    </div>
+
+    <div class="trainer-note">
+      <strong>Заметка тренера:</strong> {{ plan.trainerNote }}
+    </div>
+  </section>
+}

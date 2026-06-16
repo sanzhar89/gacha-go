@@ -1,0 +1,56 @@
+:host {
+  display: block;
+}
+
+.public-page {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  min-height: 100vh;
+}
+
+.public-main {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 48px 24px 90px;
+}
+
+.public-back {
+  display: inline-block;
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+
+  &:hover {
+    color: var(--text);
+  }
+}
+
+.public-page-header {
+  margin-bottom: 40px;
+}
+
+.public-eyebrow {
+  font-size: 12.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ff9a6b;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.public-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(30px, 4vw, 46px);
+  letter-spacing: -0.02em;
+  margin: 0 0 14px;
+}
+
+.public-desc {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+  max-width: 640px;
+}

@@ -1,0 +1,28 @@
+@if (post) {
+  <div class="public-page">
+    <app-public-header />
+
+    <main class="public-main">
+      <a routerLink="/blog" class="public-back">← Все статьи</a>
+
+      <article class="article">
+        <div class="article-cover">
+          <img class="article-photo" [src]="post.cover" [alt]="post.title" />
+          <span class="article-tag" [class.article-tag--dark]="post.categoryDark">{{ post.category }}</span>
+        </div>
+
+        <div class="article-content">
+          <div class="article-meta">{{ post.date }} · {{ post.readTime }} · {{ post.author }}</div>
+          <h1 class="article-title">{{ post.title }}</h1>
+          <p class="article-lead">{{ post.excerpt }}</p>
+
+          <div class="article-body">
+            @for (paragraph of post.body; track paragraph) {
+              <p>{{ paragraph }}</p>
+            }
+          </div>
+        </div>
+      </article>
+    </main>
+  </div>
+}

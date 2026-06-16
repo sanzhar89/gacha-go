@@ -1,0 +1,14 @@
+@if (currentRole$ | async; as current) {
+  <div class="role-switcher">
+    @for (r of roles; track r.role) {
+      <button
+        type="button"
+        class="role-btn"
+        [class.active]="current === r.role"
+        (click)="switch(r.role)"
+      >
+        {{ r.label }}
+      </button>
+    }
+  </div>
+}

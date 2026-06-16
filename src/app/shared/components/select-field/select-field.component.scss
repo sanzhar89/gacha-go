@@ -1,0 +1,116 @@
+:host {
+  display: block;
+}
+
+.select-field {
+  position: relative;
+}
+
+.select-field-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 12px;
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+
+  &:hover:not(:disabled) {
+    border-color: #3c3e45;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  &:focus-visible {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(77, 141, 255, 0.15);
+  }
+}
+
+.select-field--open .select-field-trigger {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(77, 141, 255, 0.15);
+}
+
+.select-field--disabled .select-field-trigger {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.select-field-value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.select-field-chevron-wrap {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.select-field-chevron {
+  color: var(--text-muted);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.select-field--open .select-field-chevron {
+  transform: rotate(180deg);
+  color: var(--accent);
+}
+
+.select-field--open .select-field-chevron-wrap {
+  background: rgba(77, 141, 255, 0.12);
+}
+
+.select-field-menu {
+  position: fixed;
+  z-index: 1100;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  max-height: min(240px, calc(100vh - 24px));
+  overflow-y: auto;
+}
+
+.select-field-option {
+  width: 100%;
+  display: block;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 14px;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    background: rgba(77, 141, 255, 0.1);
+    color: var(--text);
+  }
+
+  &--active {
+    background: rgba(77, 141, 255, 0.16);
+    color: var(--accent);
+    font-weight: 600;
+  }
+}

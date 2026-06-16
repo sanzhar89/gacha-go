@@ -1,0 +1,91 @@
+<div class="page-header">
+  <div class="page-header-text">
+    <h1>Обзор зала</h1>
+    <p>Сводка за июнь 2026 · данные только для чтения</p>
+  </div>
+  <span class="readonly-badge">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8B8B8B" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+      <rect x="3" y="11" width="18" height="11" rx="2"></rect>
+      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+    </svg>
+    только чтение
+  </span>
+</div>
+
+<div class="kpis">
+  @for (kpi of kpis; track kpi.label) {
+    <div class="kpi-card">
+      <div class="kpi-label">{{ kpi.label }}</div>
+      <div class="kpi-value">{{ kpi.value }}</div>
+      <div class="kpi-sublabel" [class.kpi-sublabel--accent]="kpi.accent">{{ kpi.sublabel }}</div>
+    </div>
+  }
+</div>
+
+<div class="gg-over">
+  <section class="chart-card">
+    <div class="chart-header">
+      <h2>Посещаемость по дням недели</h2>
+      <span class="chart-meta">средняя за июнь</span>
+    </div>
+    <div class="chart-bars">
+      @for (day of attendance; track day.label) {
+        <div class="bar-col">
+          <span class="bar-value" [class.bar-value--highlight]="day.highlight">
+            {{ day.value }}
+          </span>
+          <div
+            class="bar"
+            [class.bar--highlight]="day.highlight"
+            [style.height.%]="day.heightPercent"
+          ></div>
+          <span class="bar-label" [class.bar-label--highlight]="day.highlight">
+            {{ day.label }}
+          </span>
+        </div>
+      }
+    </div>
+  </section>
+
+  <section class="memberships-card">
+    <h2>Абонементы</h2>
+    <div class="memberships-list">
+      @for (m of memberships; track m.name) {
+        <div class="membership-row">
+          <div class="membership-header">
+            <span class="membership-name">{{ m.name }}</span>
+            <span class="membership-count">{{ m.count }}</span>
+          </div>
+          <div class="membership-track">
+            <div class="membership-fill" [style.width.%]="m.barPercent" [style.background]="m.color"></div>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+</div>
+
+<section class="staff-card">
+  <h2>Персонал</h2>
+  <div class="staff-table">
+    <div class="staff-head">
+      <span>Тренер</span>
+      <span>Специализация</span>
+      <span class="center">Учеников</span>
+      <span class="center">Ср. выполнение</span>
+    </div>
+    @for (person of staff; track person.name; let last = $last) {
+      <div class="staff-row" [class.staff-row--last]="last">
+        <div class="staff-name-cell">
+          <span class="avatar" [style.background]="person.gradient" [style.color]="person.textColor">
+            {{ person.initials }}
+          </span>
+          <span class="staff-name">{{ person.name }}</span>
+        </div>
+        <span class="staff-spec">{{ person.specialization }}</span>
+        <span class="staff-students">{{ person.students }}</span>
+        <span class="staff-completion">{{ person.completion }}</span>
+      </div>
+    }
+  </div>
+</section>

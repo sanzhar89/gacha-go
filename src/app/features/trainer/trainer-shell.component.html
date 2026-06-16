@@ -1,0 +1,15 @@
+<div class="shell">
+  <app-sidebar [config]="config" />
+  <main class="shell-main">
+    <app-topbar
+      title="Кабинет тренера"
+      badge="8 активных учеников"
+      [badgePulse]="true"
+      [badgeWarm]="true"
+      [showNotifications]="true"
+    />
+    <div class="shell-content">
+      <router-outlet />
+    </div>
+  </main>
+</div>

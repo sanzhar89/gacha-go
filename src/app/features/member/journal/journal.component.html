@@ -1,0 +1,153 @@
+<div class="page-header">
+  <h1 class="page-title">Журнал тренировок</h1>
+  <p class="page-subtitle">Записывай каждую тренировку — за неё начисляется XP</p>
+</div>
+
+<div class="gg-journal">
+  <aside class="journal-form">
+    <h2 class="form-title">Новая запись</h2>
+
+    <label class="field-label">Тип тренировки</label>
+    <app-select-field class="field-select" [(ngModel)]="workoutType" [options]="workoutTypes" />
+
+    <label class="field-label">Фокус / группа мышц</label>
+    <input class="field-input" type="text" [(ngModel)]="focus" placeholder="Грудь и трицепс" />
+
+    <div class="field-row">
+      <div>
+        <label class="field-label">Время, мин</label>
+        <input class="field-input" type="text" [(ngModel)]="durationMin" />
+      </div>
+      <div>
+        <label class="field-label">Калории</label>
+        <input class="field-input" type="text" [(ngModel)]="calories" />
+      </div>
+    </div>
+
+    <label class="field-label">Дистанция, км <span class="field-hint">(для кардио)</span></label>
+    <input class="field-input" type="text" placeholder="—" [(ngModel)]="distanceKm" />
+
+    <label class="field-label">Упражнения</label>
+    <div class="exercise-chips">
+      @for (ex of exercises; track $index) {
+        <div class="exercise-chip">
+          <span class="exercise-chip-name">{{ ex.name }}</span>
+          <span class="exercise-chip-detail">{{ exerciseDetail(ex) }}</span>
+          <button type="button" class="chip-remove" (click)="removeExercise($index)" aria-label="Удалить">×</button>
+        </div>
+      }
+    </div>
+
+    <button type="button" class="add-exercise-btn" (click)="openExerciseModal()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M12 5v14M5 12h14" />
+      </svg>
+      Добавить упражнение
+    </button>
+
+    <button type="button" class="save-btn" (click)="saveWorkout()">Сохранить · +XP</button>
+  </aside>
+
+  <section class="journal-history">
+    <h2 class="history-title">История</h2>
+    <div class="history-list">
+      @for (entry of history$ | async; track entry.id) {
+        <article class="history-card">
+          <div class="history-card-top">
+            <div class="history-card-main">
+              <span class="history-icon" [attr.data-type]="entry.iconType">
+                @switch (entry.iconType) {
+                  @case ('run') {
+                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#ff9a6b" stroke-width="2" stroke-linecap="round">
+                      <path d="M13 4v7M6 10l7 7 7-7" />
+                    </svg>
+                  }
+                  @case ('hiit') {
+                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FF7849" stroke-width="2" stroke-linecap="round">
+                      <path d="M12 2s4 4 4 8a4 4 0 0 1-8 0c0-2 2-4 2-6" />
+                    </svg>
+                  }
+                  @default {
+                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#4d8dff" stroke-width="2" stroke-linecap="round">
+                      <path d="M6.5 6.5l11 11M21 21l-1-1M3 3l1 1" />
+                    </svg>
+                  }
+                }
+              </span>
+              <div>
+                <div class="history-card-title">{{ entry.title }}</div>
+                <div class="history-card-date">{{ entry.date }} · {{ entry.time }}</div>
+              </div>
+            </div>
+            <div class="history-actions">
+              <span class="history-xp">+{{ entry.xp }} XP</span>
+              <button type="button" class="icon-btn" (click)="openEdit(entry)" title="Редактировать">✎</button>
+              <button type="button" class="icon-btn icon-btn--danger" (click)="confirmDelete(entry.id)" title="Удалить">✕</button>
+            </div>
+          </div>
+          <div class="history-stats">
+            <span>⏱ {{ entry.durationMin }} мин</span>
+            <span>🔥 {{ entry.calories }} ккал</span>
+            @if (entry.distanceKm) {
+              <span>📍 {{ entry.distanceKm | number: '1.1-1' }} км</span>
+            } @else if (entry.exerciseCount) {
+              <span>🏋 {{ entry.exerciseCount }} упражнения</span>
+            }
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+</div>
+
+<app-modal [open]="exerciseModalOpen" title="Добавить упражнение" (closed)="exerciseModalOpen = false">
+  <label class="field-label">Название</label>
+  <input class="field-input" [(ngModel)]="exName" placeholder="Жим лёжа" />
+  <div class="field-row">
+    <div>
+      <label class="field-label">Подходы</label>
+      <input class="field-input" [(ngModel)]="exSets" />
+    </div>
+    <div>
+      <label class="field-label">Повторы</label>
+      <input class="field-input" [(ngModel)]="exReps" />
+    </div>
+  </div>
+  <label class="field-label">Вес</label>
+  <input class="field-input" [(ngModel)]="exWeight" placeholder="60кг" />
+  <div modalActions>
+    <button type="button" class="btn-ghost" (click)="exerciseModalOpen = false">Отмена</button>
+    <button type="button" class="btn-primary" (click)="addExercise()">Добавить</button>
+  </div>
+</app-modal>
+
+<app-modal [open]="editModalOpen" title="Редактировать запись" (closed)="editModalOpen = false">
+  <label class="field-label">Тип</label>
+  <app-select-field class="field-select" [(ngModel)]="editType" [options]="workoutTypes" />
+  <label class="field-label">Фокус</label>
+  <input class="field-input" [(ngModel)]="editFocus" />
+  <div class="field-row">
+    <div>
+      <label class="field-label">Время, мин</label>
+      <input class="field-input" [(ngModel)]="editDuration" />
+    </div>
+    <div>
+      <label class="field-label">Калории</label>
+      <input class="field-input" [(ngModel)]="editCalories" />
+    </div>
+  </div>
+  <label class="field-label">Дистанция, км</label>
+  <input class="field-input" [(ngModel)]="editDistance" />
+  <div modalActions>
+    <button type="button" class="btn-ghost" (click)="editModalOpen = false">Отмена</button>
+    <button type="button" class="btn-primary" (click)="saveEdit()">Сохранить</button>
+  </div>
+</app-modal>
+
+<app-modal [open]="deleteModalOpen" title="Удалить запись?" size="sm" (closed)="deleteModalOpen = false">
+  <p class="modal-text">Запись будет удалена из истории без возможности восстановления.</p>
+  <div modalActions>
+    <button type="button" class="btn-ghost" (click)="deleteModalOpen = false">Отмена</button>
+    <button type="button" class="btn-danger" (click)="deleteEntry()">Удалить</button>
+  </div>
+</app-modal>

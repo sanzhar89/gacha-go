@@ -1,0 +1,243 @@
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-title {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 32px;
+  letter-spacing: -0.02em;
+  margin: 0 0 4px;
+}
+
+.page-subtitle {
+  font-size: 15px;
+  color: #8b8b8b;
+  margin: 0;
+}
+
+.xp-hero {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 26px;
+  margin-bottom: 20px;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 26px;
+    right: 26px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), #ff9a6b, var(--accent-warm));
+  }
+}
+
+.xp-hero-glow {
+  position: absolute;
+  top: -80px;
+  right: -40px;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(194, 65, 12, 0.4), transparent 60%);
+  pointer-events: none;
+}
+
+.xp-hero-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.xp-hero-main {
+  flex: 1;
+  min-width: 280px;
+}
+
+.xp-level-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.xp-level {
+  font-family: var(--font-stat);
+  font-weight: 800;
+  font-size: 30px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+}
+
+.xp-league {
+  font-size: 14px;
+  color: #ff9a6b;
+}
+
+.xp-streak-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid #2a2c32;
+  border-radius: 14px;
+  padding: 16px 22px;
+}
+
+.xp-streak-emoji {
+  font-size: 30px;
+}
+
+.xp-streak-value {
+  font-family: var(--font-stat);
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+}
+
+.xp-streak-meta {
+  font-size: 12.5px;
+  color: var(--text-dim);
+  margin-top: 3px;
+}
+
+.section-title {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 16px;
+  margin: 28px 0 14px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.today-plan {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.today-plan-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.today-plan-title {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 20px;
+  margin: 0 0 4px;
+}
+
+.today-plan-meta {
+  font-size: 13px;
+  color: #8b8b8b;
+
+  .accent {
+    color: var(--accent);
+  }
+}
+
+.journal-btn {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0a0d14;
+  background: var(--accent);
+  padding: 11px 18px;
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+}
+
+.exercise-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.exercise-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--bg);
+  border: 1px solid #2a2c32;
+}
+
+.exercise-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  background: #202228;
+  border: 1.5px solid #3c3e45;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  padding: 0;
+  cursor: pointer;
+
+  &.done {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+}
+
+.exercise-name.done-text {
+  text-decoration: line-through;
+  color: var(--text-dim);
+}
+
+.exercise-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.exercise-name {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.exercise-detail {
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.exercise-weight {
+  font-family: var(--font-stat);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+
+.trainer-note {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(255, 138, 86, 0.08);
+  border: 1px solid rgba(255, 138, 86, 0.2);
+  font-size: 13.5px;
+  color: #f4d5c4;
+
+  strong {
+    color: #ff9a6b;
+  }
+}

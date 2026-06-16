@@ -1,0 +1,111 @@
+<div class="page-header">
+  <h1>Объявления</h1>
+  <p>Рассылка участникам и тренерам зала</p>
+</div>
+
+<div class="gg-ann">
+  <section class="compose">
+    <h2>Новая рассылка</h2>
+
+    <label class="field-label">Получатели</label>
+    <div class="audience-pills">
+      @for (opt of audienceOptions; track opt.id) {
+        <button
+          type="button"
+          class="pill"
+          [class.pill--active]="isAudienceActive(opt.id)"
+          (click)="selectAudience(opt.id)"
+        >
+          {{ opt.label }} · {{ opt.count }}
+        </button>
+      }
+    </div>
+
+    <label class="field-label">Заголовок</label>
+    <input
+      type="text"
+      class="field-input"
+      placeholder="Например: Зал закрыт 16 июня на профилактику"
+      [(ngModel)]="title"
+    />
+
+    <label class="field-label">Текст сообщения</label>
+    <textarea
+      class="field-textarea"
+      rows="5"
+      placeholder="Текст объявления..."
+      [(ngModel)]="message"
+    ></textarea>
+
+    <label class="field-label">Канал доставки</label>
+    <div class="channels">
+      <button type="button" class="channel" [class.channel--active]="pushEnabled" (click)="togglePush()">
+        <span class="checkbox" [class.checkbox--checked]="pushEnabled">
+          @if (pushEnabled) {
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0A0D14" stroke-width="3" stroke-linecap="round" aria-hidden="true">
+              <path d="M20 6L9 17l-5-5"></path>
+            </svg>
+          }
+        </span>
+        Push в приложении
+      </button>
+      <button type="button" class="channel" [class.channel--active]="emailEnabled" (click)="toggleEmail()">
+        <span class="checkbox" [class.checkbox--checked]="emailEnabled">
+          @if (emailEnabled) {
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0A0D14" stroke-width="3" stroke-linecap="round" aria-hidden="true">
+              <path d="M20 6L9 17l-5-5"></path>
+            </svg>
+          }
+        </span>
+        Email
+      </button>
+    </div>
+
+    <div class="compose-actions">
+      <button type="button" class="btn btn--ghost" (click)="openPreview()">Предпросмотр</button>
+      <button type="button" class="btn btn--primary" (click)="send()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0A0D14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path>
+        </svg>
+        Отправить
+      </button>
+    </div>
+  </section>
+
+  <aside class="recent">
+    <div class="recent-title">Недавние рассылки</div>
+    <div class="recent-list">
+      @for (item of announcements$ | async; track item.id) {
+        <article class="recent-card">
+          <div class="recent-card-header">
+            <span class="recent-audience">{{ item.audienceLabel }}</span>
+            <span class="recent-date">{{ item.date }}</span>
+            <button type="button" class="recent-delete" (click)="confirmDelete(item.id)" title="Удалить">✕</button>
+          </div>
+          <div class="recent-card-title">{{ item.title }}</div>
+          <div class="recent-card-stats">{{ item.stats }}</div>
+        </article>
+      }
+    </div>
+  </aside>
+</div>
+
+<app-modal [open]="previewOpen" title="Предпросмотр" size="md" (closed)="previewOpen = false">
+  <div class="preview-card">
+    <div class="preview-meta">{{ audienceLabel(audience) }} · Push{{ pushEnabled ? '' : ' выкл' }}{{ emailEnabled ? ' · Email' : '' }}</div>
+    <div class="preview-title">{{ title }}</div>
+    <p class="preview-body">{{ message }}</p>
+  </div>
+  <div modalActions>
+    <button type="button" class="btn-ghost" (click)="previewOpen = false">Закрыть</button>
+    <button type="button" class="btn-primary" (click)="send()">Отправить</button>
+  </div>
+</app-modal>
+
+<app-modal [open]="deleteOpen" title="Удалить рассылку?" size="sm" (closed)="deleteOpen = false">
+  <p class="modal-text">Удалить это объявление из истории?</p>
+  <div modalActions>
+    <button type="button" class="btn-ghost" (click)="deleteOpen = false">Отмена</button>
+    <button type="button" class="btn-danger" (click)="deleteAnnouncement()">Удалить</button>
+  </div>
+</app-modal>

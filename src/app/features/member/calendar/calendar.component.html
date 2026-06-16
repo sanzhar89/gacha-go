@@ -1,0 +1,93 @@
+<div class="page-header">
+  <h1 class="page-title">Календарь активности</h1>
+  <p class="page-subtitle">Каждый отмеченный день — это плюс к серии</p>
+</div>
+
+<div class="gg-cal">
+  <section class="calendar-card">
+    <div class="calendar-toolbar">
+      <div class="calendar-nav">
+        <button type="button" class="nav-btn" (click)="prevMonth()" aria-label="Предыдущий месяц">‹</button>
+        <span class="calendar-month">{{ monthLabel }}</span>
+        <button type="button" class="nav-btn" (click)="nextMonth()" aria-label="Следующий месяц">›</button>
+      </div>
+      <div class="calendar-legend">
+        <span class="legend-item">
+          <span class="legend-dot workout"></span>Тренировка
+        </span>
+        <span class="legend-item">
+          <span class="legend-dot today"></span>Сегодня
+        </span>
+      </div>
+    </div>
+
+    <div class="weekday-row">
+      @for (label of weekdayLabels; track label) {
+        <div class="weekday">{{ label }}</div>
+      }
+    </div>
+
+    <div class="days-grid">
+      @for (cell of calendarDays; track $index) {
+        @if (cell.inMonth) {
+          <button
+            type="button"
+            class="day-cell"
+            [class.workout]="isWorkoutDay(cell.day)"
+            [class.today]="isToday(cell.day)"
+            [class.selected]="selectedDay === cell.day"
+            (click)="selectDay(cell.day)"
+          >
+            {{ cell.day }}
+          </button>
+        } @else {
+          <span class="day-cell empty"></span>
+        }
+      }
+    </div>
+  </section>
+
+  <aside class="calendar-side">
+    @if (selectedWorkout; as workout) {
+      <div class="side-card workout-detail">
+        <div class="detail-label">{{ selectedDay }} {{ monthNames[viewMonth] }}</div>
+        <div class="detail-title">{{ workout.title }}</div>
+        <div class="detail-meta">{{ workout.type }} · {{ workout.duration }}</div>
+        <div class="detail-calories">🔥 {{ workout.calories }} ккал</div>
+      </div>
+    }
+
+    <div class="side-card">
+      <div class="side-label">Тренировок в {{ monthNames[viewMonth].toLowerCase() }}</div>
+      <div class="side-value accent">{{ monthWorkouts() }}</div>
+      <div class="side-meta">цель месяца — {{ monthGoal }}</div>
+      <div class="progress-track">
+        <div class="progress-fill" [style.width.%]="monthProgress()"></div>
+      </div>
+    </div>
+
+    <div class="side-card">
+      <div class="streak-row">
+        <span class="streak-emoji">🔥</span>
+        <span class="streak-value">{{ streakDays() }}</span>
+      </div>
+      <div class="side-label">дней текущая серия</div>
+      <div class="side-meta streak-record">
+        Личный рекорд: <span class="accent-text">{{ streakRecord() }} день</span>
+      </div>
+    </div>
+
+    <div class="side-card">
+      <div class="side-label distribution-title">Распределение нагрузки</div>
+      <div class="distribution-list">
+        @for (item of loadDistribution(); track item.label) {
+          <div class="distribution-row">
+            <span class="distribution-dot" [style.background]="item.color"></span>
+            <span class="distribution-label">{{ item.label }}</span>
+            <span class="distribution-count">{{ item.count }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </aside>
+</div>

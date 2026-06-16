@@ -1,0 +1,86 @@
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Расписание</h1>
+    <p class="page-subtitle">{{ totalSessions }} сессий на этой неделе · 15–21 июня</p>
+  </div>
+  <button type="button" class="btn-primary" (click)="openAdd('mon')">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+      <path d="M12 5v14M5 12h14" />
+    </svg>
+    Добавить сессию
+  </button>
+</div>
+
+<div class="schedule-grid">
+  @for (day of weekDays$ | async; track day.key) {
+    <div class="day-column" [class.day-column--today]="isToday(day)">
+      <div class="day-header">
+        <span class="day-label">{{ day.label }}</span>
+        <span class="day-name">{{ day.fullName }}</span>
+        <span class="day-count">{{ day.sessions.length }}</span>
+        <button type="button" class="day-add" (click)="openAdd(day.key)" title="Добавить сессию">+</button>
+      </div>
+
+      <div class="day-sessions">
+        @for (session of day.sessions; track session.id) {
+          <article class="session-card" (click)="openEdit(day.key, session)">
+            <div class="session-time">{{ session.time }}</div>
+            <div class="session-main">
+              <div
+                class="session-avatar"
+                [style.background]="session.gradient"
+                [style.color]="session.textColor"
+              >
+                {{ session.initials }}
+              </div>
+              <div class="session-info">
+                <div class="session-student">{{ session.studentName }}</div>
+                <div class="session-meta">{{ session.type }} · {{ session.duration }}</div>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="session-delete"
+              (click)="$event.stopPropagation(); confirmDelete(day.key, session)"
+              title="Удалить"
+            >
+              ✕
+            </button>
+          </article>
+        } @empty {
+          <div class="day-empty">Нет сессий</div>
+        }
+      </div>
+    </div>
+  }
+</div>
+
+<app-modal
+  [open]="formOpen"
+  [title]="editingSession ? 'Редактировать сессию' : 'Новая сессия'"
+  (closed)="formOpen = false"
+>
+  <label class="field-label">Ученик</label>
+  <app-select-field class="field-select" [(ngModel)]="formStudentId" [items]="studentOptions" />
+
+  <label class="field-label">Время</label>
+  <input class="field-input" type="time" [(ngModel)]="formTime" />
+  <label class="field-label">Длительность</label>
+  <input class="field-input" [(ngModel)]="formDuration" placeholder="60 мин" />
+  <label class="field-label">Тип</label>
+  <app-select-field class="field-select" [(ngModel)]="formType" [options]="sessionTypeOptions" />
+  <div modalActions>
+    <button type="button" class="btn-ghost" (click)="formOpen = false">Отмена</button>
+    <button type="button" class="btn-primary" (click)="saveSession()">Сохранить</button>
+  </div>
+</app-modal>
+
+<app-modal [open]="deleteOpen" title="Удалить сессию?" size="sm" (closed)="deleteOpen = false">
+  @if (deleting; as d) {
+    <p class="modal-text">Удалить сессию {{ d.session.studentName }} в {{ d.session.time }}?</p>
+  }
+  <div modalActions>
+    <button type="button" class="btn-ghost" (click)="deleteOpen = false">Отмена</button>
+    <button type="button" class="btn-danger" (click)="deleteSession()">Удалить</button>
+  </div>
+</app-modal>

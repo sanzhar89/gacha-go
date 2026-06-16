@@ -1,0 +1,112 @@
+<div class="page-header">
+  <h1 class="page-title">Конструктор тренировок</h1>
+  <p class="page-subtitle">Собери план по дням недели для ученика</p>
+</div>
+
+<div class="student-selector">
+  <div class="section-label">Ученик</div>
+  <div class="student-pills">
+    @for (student of students; track student.id) {
+      <button
+        type="button"
+        class="student-pill"
+        [class.active]="isStudentActive(student.id)"
+        (click)="selectStudent(student.id)"
+      >
+        <span class="pill-avatar" [style.background]="student.gradient">{{ student.initials }}</span>
+        <span class="pill-name">{{ student.name }}</span>
+      </button>
+    }
+  </div>
+</div>
+
+<div class="builder-card">
+  <div class="day-tabs">
+    @for (day of dayKeys; track day) {
+      <button
+        type="button"
+        class="day-tab"
+        [class.active]="isDayActive(day)"
+        (click)="selectDay(day)"
+      >
+        {{ day }}
+      </button>
+    }
+  </div>
+
+  <div class="builder-body">
+    <div class="day-header">
+      <div class="day-title-row">
+        <span class="day-name">{{ dayName }}</span>
+        <input
+          type="text"
+          class="focus-input"
+          [(ngModel)]="focus"
+          placeholder="Фокус тренировки"
+        />
+      </div>
+      <span class="exercise-count">{{ exerciseCountLabel }}</span>
+    </div>
+
+    <div class="column-headers">
+      <span>Упражнение</span>
+      <span class="col-center">Подходы</span>
+      <span class="col-center">Повторы</span>
+      <span class="col-center">Отдых</span>
+      <span class="col-action"></span>
+    </div>
+
+    <div class="exercise-list">
+      @for (ex of exercises; track ex.id; let i = $index) {
+        <div class="exercise-row">
+          <div class="exercise-fields">
+            <div class="exercise-name-cell">
+              <span class="drag-handle" aria-hidden="true">⠿</span>
+              <input
+                type="text"
+                class="field-input name-input"
+                [(ngModel)]="ex.name"
+                placeholder="Название упражнения"
+              />
+            </div>
+            <input type="text" class="field-input col-input" [(ngModel)]="ex.sets" />
+            <input type="text" class="field-input col-input" [(ngModel)]="ex.reps" />
+            <input type="text" class="field-input col-input rest-input" [(ngModel)]="ex.rest" />
+            <button
+              type="button"
+              class="remove-btn"
+              (click)="removeExercise(i)"
+              aria-label="Удалить упражнение"
+            >
+              ×
+            </button>
+          </div>
+          <div class="exercise-note">
+            <span class="note-label">заметка:</span>
+            <input
+              type="text"
+              class="note-input"
+              [(ngModel)]="ex.notes"
+              placeholder="Техника, темп, вес..."
+            />
+          </div>
+        </div>
+      }
+    </div>
+
+    <button type="button" class="add-exercise-btn" (click)="addExercise()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M12 5v14M5 12h14" />
+      </svg>
+      Добавить упражнение
+    </button>
+
+    <div class="builder-actions">
+      @if (saved) {
+        <span class="save-hint">План сохранён</span>
+      }
+      <button type="button" class="btn-outline" (click)="duplicateWeek()">Дублировать на неделю</button>
+      <button type="button" class="btn-primary" (click)="savePlan()">Сохранить план</button>
+    </div>
+  </div>
+</div>
