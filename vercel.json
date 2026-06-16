@@ -1,0 +1,5 @@
+{
+  "outputDirectory": "dist/gacha-go/browser",
+  "buildCommand": "npm run build",
+  "framework": null
+}
