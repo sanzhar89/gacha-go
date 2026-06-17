@@ -24,7 +24,7 @@ export const LANDING_PATHS: ProgressPath[] = [
     title: 'Силовой тренинг',
     description:
       'Программы с прогрессией нагрузок и техникой. Каждая тренировка даёт XP и приближает к следующему дивизиону.',
-    image: '/assets/leagues/strength.png',
+    image: '/assets/leagues/strength.webp',
     xpReward: 120,
     progress: 68,
   },
@@ -35,7 +35,7 @@ export const LANDING_PATHS: ProgressPath[] = [
     title: 'Функционал и кардио',
     description:
       'HIIT и кардио-сессии с таймером и калориями. Держи серию — получай бонусный XP за каждый день подряд.',
-    image: '/assets/leagues/cardio.png',
+    image: '/assets/leagues/cardio.webp',
     xpReward: 90,
     progress: 54,
   },
@@ -46,7 +46,7 @@ export const LANDING_PATHS: ProgressPath[] = [
     title: 'Питание и восстановление',
     description:
       'Планы БЖУ, журнал питания и дни отдыха в календаре. Без восстановления персонаж не прокачается.',
-    image: '/assets/leagues/recovery.png',
+    image: '/assets/leagues/recovery.webp',
     xpReward: 60,
     progress: 41,
   },
@@ -75,37 +75,37 @@ export const LANDING_PROGRAMS: TrainingProgram[] = [
     id: 'strength',
     title: 'Силовая программа',
     subtitle: 'Тренировка · Зал',
-    image: '/assets/carousel/strength.png',
+    image: '/assets/carousel/strength.webp',
   },
   {
     id: 'equipment',
     title: 'Оборудование зала',
     subtitle: 'Тренировка · Зал',
-    image: '/assets/carousel/equipment.png',
+    image: '/assets/carousel/equipment.webp',
   },
   {
     id: 'group',
     title: 'Групповые занятия',
     subtitle: 'Тренировка · Зал',
-    image: '/assets/carousel/group.png',
+    image: '/assets/carousel/group.webp',
   },
   {
     id: 'cardio',
     title: 'Кардио-зона',
     subtitle: 'Тренировка · Зал',
-    image: '/assets/carousel/cardio.png',
+    image: '/assets/carousel/cardio.webp',
   },
   {
     id: 'hiit',
     title: 'HIIT-интервалы',
     subtitle: 'Тренировка · Зал',
-    image: '/assets/carousel/hiit.png',
+    image: '/assets/carousel/hiit.webp',
   },
   {
     id: 'mobility',
     title: 'Мобильность',
     subtitle: 'Тренировка · Зал',
-    image: '/assets/carousel/mobility.png',
+    image: '/assets/carousel/mobility.webp',
   },
 ];
 
@@ -131,25 +131,25 @@ export const LANDING_COACHES: CoachCard[] = [
     name: 'Данияр Касымов',
     role: 'Силовой тренинг',
     bio: 'МСМК по пауэрлифтингу. 9 лет ведёт атлетов к рекордам.',
-    photo: '/assets/coaches/coach-1.png',
+    photo: '/assets/coaches/coach-1.webp',
   },
   {
     name: 'Аружан Нурлан',
     role: 'Функционал · HIIT',
     bio: 'Кроссфит-коуч L2. Делает кардио тем, чего ждёшь весь день.',
-    photo: '/assets/coaches/coach-2.png',
+    photo: '/assets/coaches/coach-2.webp',
   },
   {
     name: 'Тимур Мадиев',
     role: 'Нутрициология',
     bio: 'Спортивный диетолог. Считает БЖУ так, что вкусно и работает.',
-    photo: '/assets/coaches/coach-3.png',
+    photo: '/assets/coaches/coach-3.webp',
   },
   {
     name: 'Камила Жунус',
     role: 'Мобильность · йога',
     bio: 'Реабилитолог. Возвращает в строй и учит тело двигаться.',
-    photo: '/assets/coaches/coach-4.png',
+    photo: '/assets/coaches/coach-4.webp',
   },
 ];
 
@@ -161,7 +161,7 @@ export const LANDING_BLOG_POSTS: BlogPost[] = [
     readTime: '6 мин',
     title: 'Прогрессия нагрузок: как расти без плато',
     excerpt: 'Разбираем линейную и волновую периодизацию на примере наших атлетов.',
-    cover: '/assets/blog/progressiya-nagruzok.png',
+    cover: '/assets/blog/progressiya-nagruzok.webp',
     author: 'Данияр Касымов',
     body: [
       'Плато — это не приговор, а сигнал, что текущая схема нагрузки перестала работать. Чаще всего атлеты застревают не из‑за «слабой генетики», а потому что месяцами повторяют один и тот же объём и интенсивность.',
@@ -177,7 +177,7 @@ export const LANDING_BLOG_POSTS: BlogPost[] = [
     readTime: '5 мин',
     title: 'Белок на массонаборе: сколько и когда',
     excerpt: 'Тимур Мадиев объясняет, как распределить БЖУ по приёмам пищи.',
-    cover: '/assets/blog/belok-massonabor.png',
+    cover: '/assets/blog/belok-massonabor.webp',
     author: 'Тимур Мадиев',
     body: [
       'На массонаборе белок нужен не «для галочки», а как строительный материал для мышц. Для большинства атлетов оптимально 1,8–2,2 г на килограмм массы тела — больше редко даёт преимущество, но усложняет рацион.',
@@ -194,7 +194,7 @@ export const LANDING_BLOG_POSTS: BlogPost[] = [
     readTime: '8 мин',
     title: '120 дней серии: история Артёма',
     excerpt: 'Как привычка тренироваться превратилась в дивизион I силовой лиги.',
-    cover: '/assets/blog/120-dney-serii.png',
+    cover: '/assets/blog/120-dney-serii.webp',
     author: 'Редакция GachaGo',
     body: [
       'Артём пришёл в зал с простой целью — «хотя бы не пропускать». Первые две недели было тяжело: не хватало времени, мотивации и понимания, что делать в зале.',

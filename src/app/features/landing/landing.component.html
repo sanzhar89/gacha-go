@@ -58,7 +58,17 @@
 
   <!-- HERO -->
   <section class="gg-hero-section">
-    <div class="gg-hero-bg" aria-hidden="true"></div>
+    <div class="gg-hero-bg" aria-hidden="true">
+      <img
+        class="gg-hero-bg-img"
+        src="/assets/backgrounds/landing-back.webp"
+        alt=""
+        fetchpriority="high"
+        decoding="async"
+        width="1920"
+        height="1080"
+      />
+    </div>
     <div class="gg-hero">
       <div class="gg-hero-copy">
         <div class="gg-badge">
@@ -239,6 +249,7 @@
   </section>
 
   <!-- LEAGUES / PROGRESSION -->
+  @defer (on viewport) {
   <section id="leagues" class="gg-leagues theme-app">
     <div class="gg-leagues-inner">
       <div class="gg-leagues-top">
@@ -315,7 +326,13 @@
         @for (path of paths; track path.id) {
           <article class="gg-path-card">
             <div class="gg-path-image-wrap">
-              <img class="gg-path-image" [src]="path.image" [alt]="path.title" loading="lazy" />
+              <img
+                class="gg-path-image"
+                [src]="path.image"
+                [alt]="path.title"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="gg-path-body">
               <div class="gg-path-league">
@@ -339,8 +356,12 @@
       </div>
     </div>
   </section>
+  } @placeholder {
+    <section id="leagues" class="gg-leagues theme-app gg-section-placeholder" aria-hidden="true"></section>
+  }
 
   <!-- COACHES -->
+  @defer (on viewport) {
   <section id="coaches" class="gg-coaches">
     <div class="gg-coaches-inner">
       <div class="gg-coaches-text">
@@ -369,6 +390,8 @@
           class="gg-coach-portrait-img"
           [src]="coaches[selectedCoachIndex()].photo"
           [alt]="coaches[selectedCoachIndex()].name"
+          loading="lazy"
+          decoding="async"
         />
         <div class="gg-coach-portrait-info">
           <div class="gg-coach-portrait-name">{{ coaches[selectedCoachIndex()].name }}</div>
@@ -377,6 +400,9 @@
       </div>
     </div>
   </section>
+  } @placeholder {
+    <section id="coaches" class="gg-coaches gg-section-placeholder" aria-hidden="true"></section>
+  }
 
   <!-- STATS + PROGRAMS CAROUSEL -->
   <section class="gg-stats-section">
@@ -405,6 +431,7 @@
                 [src]="program.image"
                 [alt]="program.title"
                 loading="lazy"
+                decoding="async"
               />
             </div>
             <div class="gg-program-meta">
@@ -436,6 +463,7 @@
   </section>
 
   <!-- BLOG -->
+  @defer (on viewport) {
   <section id="blog" class="gg-blog-section">
     <div class="gg-blog-inner">
       <div class="gg-section-row">
@@ -446,7 +474,13 @@
         @for (post of blogPosts; track post.id) {
           <a [routerLink]="['/blog', post.id]" class="gg-blog-card">
             <div class="gg-blog-cover">
-              <img class="gg-blog-photo" [src]="post.cover" [alt]="post.title" loading="lazy" />
+              <img
+                class="gg-blog-photo"
+                [src]="post.cover"
+                [alt]="post.title"
+                loading="lazy"
+                decoding="async"
+              />
               <span class="gg-blog-tag">{{ post.category }}</span>
             </div>
             <div class="gg-blog-body">
@@ -459,6 +493,9 @@
       </div>
     </div>
   </section>
+  } @placeholder {
+    <section id="blog" class="gg-blog-section gg-section-placeholder" aria-hidden="true"></section>
+  }
 
   <!-- FINAL CTA -->
   <section class="gg-final-cta">
