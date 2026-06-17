@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { SidebarComponent, ShellConfig } from '../../shared/components/sidebar/sidebar.component';
 import { TopbarComponent } from '../../shared/components/topbar/topbar.component';
 import { NAV_ICONS } from '../../shared/nav-icons';
+import { GG_COLORS, GG_GRADIENTS } from '../../core/theme/colors';
 
 @Component({
   selector: 'app-trainer-shell',
@@ -18,8 +19,8 @@ export class TrainerShellComponent {
     userName: 'Данияр Касымов',
     userSubtitle: 'Силовой тренинг',
     userInitials: 'ДК',
-    avatarGradient: 'linear-gradient(135deg, #4d8dff, #2e6be6)',
-    avatarTextColor: '#0a0d14',
+    avatarGradient: GG_GRADIENTS.strength,
+    avatarTextColor: GG_COLORS.accentInverse,
     navItems: [
       { label: 'Ученики', route: '/trainer/students', icon: NAV_ICONS.students },
       { label: 'Конструктор тренировок', route: '/trainer/workout-builder', icon: NAV_ICONS.workout },

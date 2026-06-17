@@ -27,7 +27,7 @@
   gap: 7px;
   font-size: 14px;
   font-weight: 600;
-  color: #0a0d14;
+  color: var(--accent-inverse);
   background: var(--accent);
   padding: 11px 18px;
   border-radius: var(--radius-pill);
@@ -52,7 +52,7 @@
 
   &--today {
     border-color: var(--accent);
-    box-shadow: 0 0 0 1px rgba(77, 141, 255, 0.15);
+    box-shadow: 0 0 0 1px var(--accent-dim);
   }
 }
 

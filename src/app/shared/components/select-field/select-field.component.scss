@@ -30,13 +30,13 @@
   &:focus-visible {
     outline: none;
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(77, 141, 255, 0.15);
+    box-shadow: 0 0 0 3px var(--accent-dim);
   }
 }
 
 .select-field--open .select-field-trigger {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(77, 141, 255, 0.15);
+  box-shadow: 0 0 0 3px var(--accent-dim);
 }
 
 .select-field--disabled .select-field-trigger {
@@ -73,7 +73,7 @@
 }
 
 .select-field--open .select-field-chevron-wrap {
-  background: rgba(77, 141, 255, 0.12);
+  background: var(--accent-dim);
 }
 
 .select-field-menu {
@@ -104,12 +104,12 @@
   transition: background 0.15s ease, color 0.15s ease;
 
   &:hover {
-    background: rgba(77, 141, 255, 0.1);
+    background: var(--accent-dim);
     color: var(--text);
   }
 
   &--active {
-    background: rgba(77, 141, 255, 0.16);
+    background: var(--accent-dim);
     color: var(--accent);
     font-weight: 600;
   }

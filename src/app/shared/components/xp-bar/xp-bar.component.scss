@@ -37,8 +37,8 @@
 .xp-fill {
   height: 100%;
   border-radius: var(--radius-pill);
-  background: linear-gradient(90deg, #2e6be6, var(--accent));
-  box-shadow: 0 0 16px rgba(77, 141, 255, 0.5);
+  background: linear-gradient(90deg, var(--accent-muted), var(--accent));
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.2);
   position: relative;
   overflow: hidden;
   animation: ggFill 1.2s ease-out forwards;
@@ -104,6 +104,6 @@
   }
 
   &.partial {
-    background: #15223c;
+    background: #333333;
   }
 }

@@ -128,11 +128,11 @@
   border: none;
   border-radius: var(--radius-pill);
   padding: 13px;
-  color: #0a0d14;
+  color: var(--accent-inverse);
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 6px 22px rgba(77, 141, 255, 0.25);
+  box-shadow: 0 6px 22px rgba(255, 255, 255, 0.15);
 }
 
 .history-title {
@@ -179,7 +179,7 @@
   flex-shrink: 0;
 
   &[data-type='strength'] {
-    background: rgba(77, 141, 255, 0.1);
+    background: var(--accent-dim);
   }
 
   &[data-type='run'] {
@@ -235,12 +235,12 @@
 
   &:hover {
     color: var(--accent);
-    border-color: rgba(77, 141, 255, 0.45);
-    background: rgba(77, 141, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.35);
+    background: var(--accent-dim);
   }
 
   &--danger:hover {
-    color: #ff7849;
+    color: var(--text);
     border-color: rgba(255, 120, 73, 0.45);
     background: rgba(255, 120, 73, 0.1);
   }
@@ -262,7 +262,7 @@
   flex-shrink: 0;
 
   &:hover {
-    color: #ff7849;
+    color: var(--text);
     background: rgba(255, 120, 73, 0.12);
   }
 }

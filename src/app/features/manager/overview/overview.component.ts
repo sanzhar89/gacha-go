@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { GG_COLORS, GG_GRADIENTS } from '../../../core/theme/colors';
 
 interface Kpi {
   label: string;
@@ -57,9 +58,9 @@ export class OverviewComponent {
   ];
 
   readonly memberships: Membership[] = [
-    { name: 'Безлимит + тренер', count: 148, barPercent: 80, color: '#4d8dff' },
-    { name: 'Безлимит', count: 112, barPercent: 60, color: '#ff9a6b' },
-    { name: '8 посещений', count: 58, barPercent: 31, color: '#FF7849' },
+    { name: 'Безлимит + тренер', count: 148, barPercent: 80, color: GG_COLORS.accent },
+    { name: 'Безлимит', count: 112, barPercent: 60, color: GG_COLORS.accentCool },
+    { name: '8 посещений', count: 58, barPercent: 31, color: GG_COLORS.accentWarm },
     { name: 'Разовые', count: 24, barPercent: 13, color: '#555' },
   ];
 
@@ -67,8 +68,8 @@ export class OverviewComponent {
     {
       initials: 'ДК',
       name: 'Данияр Касымов',
-      gradient: 'linear-gradient(135deg,#4d8dff,#2e6be6)',
-      textColor: '#0A0D14',
+      gradient: GG_GRADIENTS.strength,
+      textColor: GG_COLORS.accentInverse,
       specialization: 'Силовой тренинг',
       students: 42,
       completion: '88%',
@@ -76,8 +77,8 @@ export class OverviewComponent {
     {
       initials: 'АН',
       name: 'Аружан Нурлан',
-      gradient: 'linear-gradient(135deg,#c2410c,#ff9a6b)',
-      textColor: '#fff',
+      gradient: GG_GRADIENTS.hiit,
+      textColor: GG_COLORS.accentInverse,
       specialization: 'Функционал · HIIT',
       students: 38,
       completion: '81%',
@@ -85,8 +86,8 @@ export class OverviewComponent {
     {
       initials: 'ТМ',
       name: 'Тимур Мадиев',
-      gradient: 'linear-gradient(135deg,#e0531c,#4d8dff)',
-      textColor: '#fff',
+      gradient: GG_GRADIENTS.cool,
+      textColor: GG_COLORS.accentInverse,
       specialization: 'Нутрициология',
       students: 29,
       completion: '90%',
@@ -94,8 +95,8 @@ export class OverviewComponent {
     {
       initials: 'КЖ',
       name: 'Камила Жунус',
-      gradient: 'linear-gradient(135deg,#ff9a6b,#c2410c)',
-      textColor: '#fff',
+      gradient: GG_GRADIENTS.warm,
+      textColor: GG_COLORS.accentInverse,
       specialization: 'Мобильность · йога',
       students: 31,
       completion: '85%',

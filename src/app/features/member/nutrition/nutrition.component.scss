@@ -80,7 +80,7 @@
   height: 100%;
 
   &.calories {
-    background: linear-gradient(90deg, #2e6be6, var(--accent));
+    background: linear-gradient(90deg, var(--accent-muted), var(--accent));
   }
 
   &.protein {
@@ -88,11 +88,11 @@
   }
 
   &.fat {
-    background: #ff7849;
+    background: var(--text);
   }
 
   &.carbs {
-    background: #ff9a6b;
+    background: var(--text-muted);
   }
 }
 
@@ -205,7 +205,7 @@
 }
 
 .meal-card.logged {
-  border-color: rgba(77, 141, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.35);
 }
 
 .meal-items {

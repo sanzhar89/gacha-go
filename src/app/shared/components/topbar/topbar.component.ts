@@ -8,12 +8,14 @@ import {
   inject,
 } from '@angular/core';
 import { AuthService } from '../../../core/services/auth.service';
+import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
 import { AnnouncementsService } from '../../../core/services/announcements.service';
 import { NotificationsService } from '../../../core/services/notifications.service';
 
 @Component({
   selector: 'app-topbar',
   standalone: true,
+  imports: [ThemeToggleComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './topbar.component.html',
   styleUrl: './topbar.component.scss',

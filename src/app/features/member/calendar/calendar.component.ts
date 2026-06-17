@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/c
 import { toSignal } from '@angular/core/rxjs-interop';
 import { WorkoutService } from '../../../core/services/workout.service';
 import { CalendarWorkout } from '../../../core/models/workout.model';
+import { colorsForTheme, workoutColorsForTheme } from '../../../core/theme/colors';
+import { ThemeService } from '../../../core/services/theme.service';
 
 interface CalendarDay {
   day: number;
@@ -17,6 +19,7 @@ interface CalendarDay {
 })
 export class CalendarComponent {
   private readonly workoutService = inject(WorkoutService);
+  private readonly theme = inject(ThemeService);
 
   private readonly progress = toSignal(this.workoutService.memberProgress$, {
     initialValue: this.workoutService.memberProgress,
@@ -59,6 +62,7 @@ export class CalendarComponent {
   readonly streakRecord = computed(() => this.progress().streakRecord);
 
   readonly loadDistribution = computed(() => {
+    const _theme = this.theme.mode();
     const prefix = `${this.viewYear}-${String(this.viewMonth + 1).padStart(2, '0')}`;
     const entries = this.history().filter((e) => e.dateIso.startsWith(prefix));
     const counts: Record<string, number> = {};
@@ -71,14 +75,10 @@ export class CalendarComponent {
             : 'Силовая';
       counts[key] = (counts[key] ?? 0) + 1;
     }
-    const colors: Record<string, string> = {
-      'Силовая': '#4d8dff',
-      'Кардио / бег': '#ff9a6b',
-      HIIT: '#FF7849',
-    };
+    const colors = workoutColorsForTheme(_theme);
     return Object.entries(counts).map(([label, count]) => ({
       label,
-      color: colors[label] ?? '#4d8dff',
+      color: colors[label] ?? colorsForTheme(_theme).accent,
       count,
     }));
   });

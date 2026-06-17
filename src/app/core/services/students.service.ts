@@ -1,3 +1,4 @@
+import { GG_COLORS, GG_GRADIENTS } from '../theme/colors';
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { StudentCandidate, TrainerStudent } from '../models/student.model';
@@ -13,8 +14,8 @@ const MEMBER_CATALOG: StudentCandidate[] = [
     email: 'sergey.omarov@gachago.kz',
     level: 9,
     goal: 'Сила',
-    avatarGradient: 'linear-gradient(135deg, #13203a, #4d8dff)',
-    avatarTextColor: '#fff',
+    avatarGradient: GG_GRADIENTS.strength,
+    avatarTextColor: GG_COLORS.accentInverse,
   },
   {
     id: 'aidana',
@@ -23,8 +24,8 @@ const MEMBER_CATALOG: StudentCandidate[] = [
     email: 'aidana.satbek@gachago.kz',
     level: 5,
     goal: 'Тонус',
-    avatarGradient: 'linear-gradient(135deg, #c2410c, #ff9a6b)',
-    avatarTextColor: '#fff',
+    avatarGradient: GG_GRADIENTS.cool,
+    avatarTextColor: GG_COLORS.accentInverse,
   },
   {
     id: 'nikita',
@@ -33,8 +34,8 @@ const MEMBER_CATALOG: StudentCandidate[] = [
     email: 'nikita.zhumabekov@gachago.kz',
     level: 11,
     goal: 'Набор массы',
-    avatarGradient: 'linear-gradient(135deg, #4d8dff, #2e6be6)',
-    avatarTextColor: '#0a0d14',
+    avatarGradient: GG_GRADIENTS.cardio,
+    avatarTextColor: GG_COLORS.accentInverse,
   },
   {
     id: 'dina',
@@ -43,8 +44,8 @@ const MEMBER_CATALOG: StudentCandidate[] = [
     email: 'dina.alieva@gachago.kz',
     level: 7,
     goal: 'Похудение',
-    avatarGradient: 'linear-gradient(135deg, #e0531c, #4d8dff)',
-    avatarTextColor: '#fff',
+    avatarGradient: GG_GRADIENTS.warm,
+    avatarTextColor: GG_COLORS.accentInverse,
   },
   {
     id: 'timur-s',
@@ -53,7 +54,7 @@ const MEMBER_CATALOG: StudentCandidate[] = [
     email: 'timur.seyitov@gachago.kz',
     level: 10,
     goal: 'Выносливость',
-    avatarGradient: 'linear-gradient(135deg, #3c3e45, #555)',
+    avatarGradient: GG_GRADIENTS.neutral,
     avatarTextColor: '#f4f4f2',
   },
 ];
@@ -70,8 +71,8 @@ const DEFAULT_STUDENTS: TrainerStudent[] = [
     completion: 92,
     streak: 14,
     weekProgress: '4/5',
-    avatarGradient: 'linear-gradient(135deg, #c2410c, #ff9a6b)',
-    avatarTextColor: '#fff',
+    avatarGradient: GG_GRADIENTS.cool,
+    avatarTextColor: GG_COLORS.accentInverse,
   },
   {
     id: 'madina',
@@ -83,8 +84,8 @@ const DEFAULT_STUDENTS: TrainerStudent[] = [
     completion: 86,
     streak: 9,
     weekProgress: '3/4',
-    avatarGradient: 'linear-gradient(135deg, #4d8dff, #2e6be6)',
-    avatarTextColor: '#0a0d14',
+    avatarGradient: GG_GRADIENTS.cardio,
+    avatarTextColor: GG_COLORS.accentInverse,
   },
   {
     id: 'ruslan',
@@ -96,8 +97,8 @@ const DEFAULT_STUDENTS: TrainerStudent[] = [
     completion: 98,
     streak: 27,
     weekProgress: '5/5',
-    avatarGradient: 'linear-gradient(135deg, #e0531c, #4d8dff)',
-    avatarTextColor: '#fff',
+    avatarGradient: GG_GRADIENTS.warm,
+    avatarTextColor: GG_COLORS.accentInverse,
   },
   {
     id: 'elena',

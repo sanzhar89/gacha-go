@@ -1,5 +1,6 @@
 .shell {
   display: flex;
+  align-items: stretch;
   min-height: 100vh;
   background: var(--bg);
   color: var(--text);
@@ -22,10 +23,11 @@
 
 @media (max-width: 768px) {
   .shell {
-    padding-bottom: 72px;
+    padding-bottom: calc(72px + env(safe-area-inset-bottom));
   }
 
   .shell-content {
-    padding: 20px 16px;
+    padding: 16px 14px;
+    padding-bottom: calc(16px + env(safe-area-inset-bottom));
   }
 }

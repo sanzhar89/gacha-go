@@ -1,3 +1,4 @@
+import { GG_GRADIENTS } from '../theme/colors';
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Post, PostCategory } from '../models/post.model';
@@ -26,7 +27,7 @@ const DEFAULT_POSTS: Post[] = [
     status: 'published',
     author: 'Тимур Мадиев',
     views: 936,
-    coverGradient: 'linear-gradient(135deg,#c2410c,#ff9a6b)',
+    coverGradient: GG_GRADIENTS.hiit,
   },
   {
     id: '3',
@@ -37,7 +38,7 @@ const DEFAULT_POSTS: Post[] = [
     status: 'published',
     author: 'редакция',
     views: 2107,
-    coverGradient: 'linear-gradient(135deg,#13203a,#4d8dff)',
+    coverGradient: GG_GRADIENTS.strength,
   },
   {
     id: '4',
@@ -65,9 +66,9 @@ export class PostsService {
 
   readonly coverPresets = [
     'linear-gradient(135deg,#0e1a33,#c2410c)',
-    'linear-gradient(135deg,#c2410c,#ff9a6b)',
-    'linear-gradient(135deg,#13203a,#4d8dff)',
-    'linear-gradient(135deg,#e0531c,#4d8dff)',
+    GG_GRADIENTS.hiit,
+    GG_GRADIENTS.strength,
+    GG_GRADIENTS.cool,
     '#2a2c32',
   ];
 

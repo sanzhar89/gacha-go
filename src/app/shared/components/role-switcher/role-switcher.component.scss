@@ -25,7 +25,7 @@
 
   &.active {
     background: var(--accent);
-    color: #0a0d14;
+    color: var(--accent-inverse);
     font-weight: 600;
   }
 

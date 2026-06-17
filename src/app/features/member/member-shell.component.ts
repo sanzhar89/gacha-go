@@ -5,6 +5,7 @@ import { AuthService } from '../../core/services/auth.service';
 import { SidebarComponent, ShellConfig } from '../../shared/components/sidebar/sidebar.component';
 import { TopbarComponent } from '../../shared/components/topbar/topbar.component';
 import { NAV_ICONS } from '../../shared/nav-icons';
+import { GG_COLORS, GG_GRADIENTS } from '../../core/theme/colors';
 
 @Component({
   selector: 'app-member-shell',
@@ -24,8 +25,8 @@ export class MemberShellComponent {
       userName: user?.name ?? 'Артём Волков',
       userSubtitle: 'LVL 12 · Атлет',
       userInitials: user?.initials ?? 'АВ',
-      avatarGradient: 'linear-gradient(135deg, #c2410c, #ff9a6b)',
-      avatarTextColor: '#fff',
+      avatarGradient: GG_GRADIENTS.strength,
+      avatarTextColor: GG_COLORS.accentInverse,
       navItems: [
         { label: 'Главная', route: '/member/home', icon: NAV_ICONS.home },
         { label: 'Журнал', route: '/member/journal', icon: NAV_ICONS.journal },

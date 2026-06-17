@@ -93,7 +93,7 @@
   &--active {
     border-color: var(--accent);
     background: var(--accent);
-    color: #0a0d14;
+    color: var(--accent-inverse);
   }
 }
 
@@ -156,13 +156,13 @@
   &--primary {
     background: var(--accent);
     border: none;
-    color: #0a0d14;
+    color: var(--accent-inverse);
     font-weight: 600;
     display: flex;
     align-items: center;
     gap: 8px;
     padding: 12px 26px;
-    box-shadow: 0 6px 20px rgba(77, 141, 255, 0.25);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
   }
 }
 
@@ -195,7 +195,7 @@
 
 .recent-audience {
   font-size: 11px;
-  color: #ff9a6b;
+  color: var(--text-muted);
   letter-spacing: 0.04em;
 }
 
@@ -225,7 +225,7 @@
   padding: 2px 4px;
 
   &:hover {
-    color: #ff7849;
+    color: var(--text);
   }
 }
 
@@ -238,7 +238,7 @@
 
 .preview-meta {
   font-size: 11px;
-  color: #ff9a6b;
+  color: var(--text-muted);
   margin-bottom: 8px;
 }
 

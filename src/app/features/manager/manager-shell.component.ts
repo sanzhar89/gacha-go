@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { SidebarComponent, ShellConfig } from '../../shared/components/sidebar/sidebar.component';
 import { TopbarComponent } from '../../shared/components/topbar/topbar.component';
 import { NAV_ICONS } from '../../shared/nav-icons';
+import { GG_COLORS, GG_GRADIENTS } from '../../core/theme/colors';
 
 @Component({
   selector: 'app-manager-shell',
@@ -18,8 +19,8 @@ export class ManagerShellComponent {
     userName: 'Сауле Аманова',
     userSubtitle: 'Управляющая',
     userInitials: 'СА',
-    avatarGradient: 'linear-gradient(135deg, #ff9a6b, #c2410c)',
-    avatarTextColor: '#fff',
+    avatarGradient: GG_GRADIENTS.warm,
+    avatarTextColor: GG_COLORS.accentInverse,
     navItems: [
       { label: 'Редактор постов', route: '/manager/posts', icon: NAV_ICONS.posts },
       { label: 'Объявления', route: '/manager/announcements', icon: NAV_ICONS.announcements },

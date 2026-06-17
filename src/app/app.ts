@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, isDevMode } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, isDevMode } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { ThemeService } from './core/services/theme.service';
 import { RoleSwitcherComponent } from './shared/components/role-switcher/role-switcher.component';
 
 @Component({
@@ -15,5 +16,7 @@ import { RoleSwitcherComponent } from './shared/components/role-switcher/role-sw
   styles: `:host { display: block; }`,
 })
 export class App {
+  private readonly _theme = inject(ThemeService);
+
   readonly showRoleSwitcher = isDevMode();
 }

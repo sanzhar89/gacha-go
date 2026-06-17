@@ -5,6 +5,7 @@ import {
   ElementRef,
   OnDestroy,
   ViewChild,
+  effect,
   inject,
 } from '@angular/core';
 import {
@@ -22,6 +23,8 @@ import {
   Tooltip,
 } from 'chart.js';
 import { WorkoutService } from '../../../core/services/workout.service';
+import { ThemeService } from '../../../core/services/theme.service';
+import { colorsForTheme } from '../../../core/theme/colors';
 
 Chart.register(
   BarController,
@@ -45,6 +48,7 @@ Chart.register(
 })
 export class ProgressComponent implements AfterViewInit, OnDestroy {
   private readonly workoutService = inject(WorkoutService);
+  private readonly theme = inject(ThemeService);
 
   readonly personalRecords = this.workoutService.personalRecords;
 
@@ -53,17 +57,39 @@ export class ProgressComponent implements AfterViewInit, OnDestroy {
 
   private caloriesChart?: Chart;
   private frequencyChart?: Chart;
+  private chartsReady = false;
 
   readonly avgFrequency = this.calcAvgFrequency();
+
+  constructor() {
+    effect(() => {
+      this.theme.mode();
+      if (!this.chartsReady) {
+        return;
+      }
+      this.destroyCharts();
+      queueMicrotask(() => {
+        this.initCaloriesChart();
+        this.initFrequencyChart();
+      });
+    });
+  }
 
   ngAfterViewInit(): void {
     this.initCaloriesChart();
     this.initFrequencyChart();
+    this.chartsReady = true;
   }
 
   ngOnDestroy(): void {
+    this.destroyCharts();
+  }
+
+  private destroyCharts(): void {
     this.caloriesChart?.destroy();
     this.frequencyChart?.destroy();
+    this.caloriesChart = undefined;
+    this.frequencyChart = undefined;
   }
 
   private getLastFourWeeks<T>(data: T[]): T[] {
@@ -90,6 +116,8 @@ export class ProgressComponent implements AfterViewInit, OnDestroy {
     const data = this.getLastFourWeeks(this.workoutService.weeklyCalories);
     const labels = this.weekLabels(data.length, 4);
 
+    const palette = colorsForTheme(this.theme.mode());
+
     const config: ChartConfiguration<'bar'> = {
       type: 'bar',
       data: {
@@ -101,7 +129,7 @@ export class ProgressComponent implements AfterViewInit, OnDestroy {
               const index = ctx.dataIndex;
               const isLast = index === data.length - 1;
               const isSecondLast = index === data.length - 2;
-              return isLast || isSecondLast ? '#4d8dff' : '#34363d';
+              return isLast || isSecondLast ? palette.accent : palette.surfaceMuted;
             },
             borderRadius: { topLeft: 7, topRight: 7, bottomLeft: 3, bottomRight: 3 },
             borderSkipped: false,
@@ -150,6 +178,11 @@ export class ProgressComponent implements AfterViewInit, OnDestroy {
     const data = this.getLastFourWeeks(this.workoutService.weeklyFrequency);
     const labels = this.weekLabels(data.length, 4);
 
+    const palette = colorsForTheme(this.theme.mode());
+    const accentFill = this.theme.isDark()
+      ? 'rgba(77, 141, 255, 0.12)'
+      : 'rgba(37, 99, 235, 0.1)';
+
     const config: ChartConfiguration<'line'> = {
       type: 'line',
       data: {
@@ -157,12 +190,12 @@ export class ProgressComponent implements AfterViewInit, OnDestroy {
         datasets: [
           {
             data,
-            borderColor: '#4d8dff',
-            backgroundColor: 'rgba(77, 141, 255, 0.12)',
+            borderColor: palette.accent,
+            backgroundColor: accentFill,
             fill: true,
             tension: 0.35,
-            pointBackgroundColor: '#4d8dff',
-            pointBorderColor: '#4d8dff',
+            pointBackgroundColor: palette.accent,
+            pointBorderColor: palette.accent,
             pointRadius: 4,
             pointHoverRadius: 5,
           },

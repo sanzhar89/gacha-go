@@ -5,6 +5,106 @@ export interface CoachCard {
   photo: string;
 }
 
+export interface ProgressPath {
+  id: string;
+  league: string;
+  division: string;
+  title: string;
+  description: string;
+  xpReward: number;
+  progress: number;
+}
+
+export const LANDING_PATHS: ProgressPath[] = [
+  {
+    id: 'strength',
+    league: 'Силовая лига',
+    division: 'Дивизион II',
+    title: 'Силовой тренинг',
+    description:
+      'Программы с прогрессией нагрузок и техникой. Каждая тренировка даёт XP и приближает к следующему дивизиону.',
+    xpReward: 120,
+    progress: 68,
+  },
+  {
+    id: 'cardio',
+    league: 'Кардио-лига',
+    division: 'Дивизион I',
+    title: 'Функционал и кардио',
+    description:
+      'HIIT и кардио-сессии с таймером и калориями. Держи серию — получай бонусный XP за каждый день подряд.',
+    xpReward: 90,
+    progress: 54,
+  },
+  {
+    id: 'recovery',
+    league: 'Лига восстановления',
+    division: 'Дивизион III',
+    title: 'Питание и восстановление',
+    description:
+      'Планы БЖУ, журнал питания и дни отдыха в календаре. Без восстановления персонаж не прокачается.',
+    xpReward: 60,
+    progress: 41,
+  },
+];
+
+export interface StatItem {
+  value: string;
+  label: string;
+}
+
+export const LANDING_STATS: StatItem[] = [
+  { value: '12 400+', label: 'Атлетов в лигах' },
+  { value: '34', label: 'Экспертных тренера' },
+  { value: '1,8 млн', label: 'Тренировок в журнале' },
+];
+
+export interface TrainingProgram {
+  id: string;
+  title: string;
+  subtitle: string;
+  image: string;
+}
+
+export const LANDING_PROGRAMS: TrainingProgram[] = [
+  {
+    id: 'strength',
+    title: 'Силовая программа',
+    subtitle: 'Тренировка · Зал',
+    image: '/assets/carousel/strength.png',
+  },
+  {
+    id: 'equipment',
+    title: 'Оборудование зала',
+    subtitle: 'Тренировка · Зал',
+    image: '/assets/carousel/equipment.png',
+  },
+  {
+    id: 'group',
+    title: 'Групповые занятия',
+    subtitle: 'Тренировка · Зал',
+    image: '/assets/carousel/group.png',
+  },
+  {
+    id: 'cardio',
+    title: 'Кардио-зона',
+    subtitle: 'Тренировка · Зал',
+    image: '/assets/carousel/cardio.png',
+  },
+  {
+    id: 'hiit',
+    title: 'HIIT-интервалы',
+    subtitle: 'Тренировка · Зал',
+    image: '/assets/carousel/hiit.png',
+  },
+  {
+    id: 'mobility',
+    title: 'Мобильность',
+    subtitle: 'Тренировка · Зал',
+    image: '/assets/carousel/mobility.png',
+  },
+];
+
 export interface BlogPost {
   id: string;
   category: string;
@@ -27,25 +127,25 @@ export const LANDING_COACHES: CoachCard[] = [
     name: 'Данияр Касымов',
     role: 'Силовой тренинг',
     bio: 'МСМК по пауэрлифтингу. 9 лет ведёт атлетов к рекордам.',
-    photo: '/assets/coaches/daniyar-kasymov.png',
+    photo: '/assets/coaches/coach-1.png',
   },
   {
     name: 'Аружан Нурлан',
     role: 'Функционал · HIIT',
     bio: 'Кроссфит-коуч L2. Делает кардио тем, чего ждёшь весь день.',
-    photo: '/assets/coaches/aruzhan-nurlan.png',
+    photo: '/assets/coaches/coach-2.png',
   },
   {
     name: 'Тимур Мадиев',
     role: 'Нутрициология',
     bio: 'Спортивный диетолог. Считает БЖУ так, что вкусно и работает.',
-    photo: '/assets/coaches/timur-madiyev.png',
+    photo: '/assets/coaches/coach-3.png',
   },
   {
     name: 'Камила Жунус',
     role: 'Мобильность · йога',
     bio: 'Реабилитолог. Возвращает в строй и учит тело двигаться.',
-    photo: '/assets/coaches/kamila-zhunus.png',
+    photo: '/assets/coaches/coach-4.png',
   },
 ];
 

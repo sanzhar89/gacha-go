@@ -1,4 +1,5 @@
-<aside class="sidebar desktop-sidebar">
+<div class="sidebar-column desktop-sidebar">
+  <aside class="sidebar">
   <a routerLink="/" class="brand">
     <span class="brand-icon"><span>G</span></span>
     <div>
@@ -47,7 +48,8 @@
     </div>
     <button type="button" class="logout-btn" (click)="logout()">Выйти</button>
   </div>
-</aside>
+  </aside>
+</div>
 
 <nav class="bottom-nav">
   @for (item of config.navItems; track item.route) {
