@@ -25,6 +25,7 @@
   left: 0;
   right: 0;
   z-index: 50;
+  color: var(--text);
   background: transparent;
   border-bottom: 1px solid transparent;
   transition:
@@ -60,6 +61,7 @@
   font-size: 18px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  color: var(--text);
 }
 
 .gg-nav {
@@ -239,10 +241,10 @@
   width: 100%;
   margin: 0 auto;
   padding: 120px 40px 80px;
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 32px;
-  align-items: center;
+}
+
+.gg-hero-copy {
+  max-width: 640px;
 }
 
 .gg-badge {
@@ -348,10 +350,9 @@
 
 .gg-hero-card-wrap {
   animation: ggFloat 6s ease-in-out infinite;
-  justify-self: end;
   width: 100%;
-  max-width: 500px;
-  margin-right: -24px;
+  max-width: 440px;
+  justify-self: end;
 }
 
 .gg-hero-card {
@@ -750,9 +751,21 @@
   padding: 0 40px;
 }
 
+.gg-leagues-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px 64px;
+  align-items: center;
+  margin-bottom: 56px;
+}
+
 .gg-leagues-header {
   max-width: 640px;
-  margin-bottom: 56px;
+  margin-bottom: 0;
+
+  .gg-section-title {
+    margin-bottom: 20px;
+  }
 }
 
 .gg-leagues-desc {
@@ -777,29 +790,19 @@
   flex-direction: column;
 }
 
-.gg-path-placeholder {
+.gg-path-image-wrap {
   aspect-ratio: 16 / 10;
-  background: linear-gradient(135deg, #141414 0%, #242424 50%, #141414 100%);
+  overflow: hidden;
+  background: #141414;
   border-bottom: 1px solid var(--border);
-  position: relative;
+}
 
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(45deg, rgba(255, 255, 255, 0.03) 25%, transparent 25%),
-      linear-gradient(-45deg, rgba(255, 255, 255, 0.03) 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.03) 75%),
-      linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.03) 75%);
-    background-size: 16px 16px;
-    background-position:
-      0 0,
-      0 8px,
-      8px -8px,
-      -8px 0;
-    opacity: 0.5;
-  }
+.gg-path-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
 .gg-path-body {
@@ -881,7 +884,7 @@
 
 .gg-path-progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--accent-muted), var(--accent));
+  background: linear-gradient(90deg, var(--accent), var(--accent-warm));
   animation: ggPathProgressPulse 2.4s ease-in-out infinite;
   transform-origin: left center;
 }
@@ -1364,15 +1367,14 @@
 // ── Responsive ──────────────────────────────────────────────────────────────
 
 @media (max-width: 1024px) {
-  .gg-hero {
+  .gg-leagues-top {
     grid-template-columns: 1fr;
-    gap: 48px;
+    gap: 40px;
   }
 
   .gg-hero-card-wrap {
     justify-self: stretch;
     max-width: none;
-    margin-right: 0;
   }
 
   .gg-path-grid,
@@ -1413,6 +1415,20 @@
     background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(16px);
     border-bottom-color: rgba(255, 255, 255, 0.08);
+  }
+
+  :host-context([data-theme='light']) {
+    .gg-header {
+      --text: #ffffff;
+      --text-muted: rgba(255, 255, 255, 0.72);
+      --text-dim: rgba(255, 255, 255, 0.55);
+      --accent: #2563eb;
+      --accent-inverse: #ffffff;
+      --accent-dim: rgba(255, 255, 255, 0.1);
+      --accent-border: rgba(255, 255, 255, 0.28);
+      --surface: rgba(255, 255, 255, 0.1);
+      --border: rgba(255, 255, 255, 0.22);
+    }
   }
 
   .gg-nav {
@@ -1526,7 +1542,7 @@
   }
 
   .gg-leagues-header {
-    margin-bottom: 32px;
+    margin-bottom: 0;
   }
 
   .gg-leagues-desc {
@@ -1619,6 +1635,42 @@
 }
 
 :host-context([data-theme='light']) {
+  .gg-header:not(.gg-header--scrolled) {
+    --text: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.72);
+    --text-dim: rgba(255, 255, 255, 0.55);
+    --accent: #2563eb;
+    --accent-inverse: #ffffff;
+    --accent-dim: rgba(255, 255, 255, 0.1);
+    --accent-border: rgba(255, 255, 255, 0.28);
+    --surface: rgba(255, 255, 255, 0.1);
+    --border: rgba(255, 255, 255, 0.22);
+  }
+
+  .gg-hero-section {
+    --text: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.72);
+    --text-dim: rgba(255, 255, 255, 0.55);
+    --accent: #2563eb;
+    --accent-inverse: #ffffff;
+    --accent-dim: rgba(37, 99, 235, 0.18);
+    --accent-border: rgba(255, 255, 255, 0.22);
+    --border: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+  }
+
+  .gg-hero-bg {
+    background-image:
+      linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.68) 0%,
+        rgba(0, 0, 0, 0.48) 32%,
+        rgba(0, 0, 0, 0.2) 58%,
+        rgba(0, 0, 0, 0.42) 100%
+      ),
+      url('/assets/backgrounds/landing-back.png');
+  }
+
   .gg-hero-card {
     --accent: #2563eb;
     --accent-muted: #1d4ed8;
@@ -1648,16 +1700,8 @@
     border-color: rgba(0, 0, 0, 0.08);
   }
 
-  .gg-path-placeholder {
-    background: linear-gradient(135deg, #f0f0f0 0%, #e4e4e4 50%, #f0f0f0 100%);
-
-    &::after {
-      background-image:
-        linear-gradient(45deg, rgba(0, 0, 0, 0.03) 25%, transparent 25%),
-        linear-gradient(-45deg, rgba(0, 0, 0, 0.03) 25%, transparent 25%),
-        linear-gradient(45deg, transparent 75%, rgba(0, 0, 0, 0.03) 75%),
-        linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.03) 75%);
-    }
+  .gg-path-image-wrap {
+    background: #ebebeb;
   }
 
   .gg-blog-card:hover {

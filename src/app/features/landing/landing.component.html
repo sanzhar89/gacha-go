@@ -1,5 +1,4 @@
 <div class="gg-landing" [class.gg-landing--menu-open]="mobileMenuOpen()">
-
   <!-- NAV -->
   <header class="gg-header" [class.gg-header--scrolled]="headerScrolled()">
     <div class="gg-header-inner">
@@ -42,8 +41,15 @@
           <a href="#blog" class="gg-mobile-navlink" (click)="closeMobileMenu()">Блог</a>
           <div class="gg-mobile-nav-actions">
             <app-theme-toggle variant="labeled" />
-            <a [routerLink]="loginLink" class="gg-mobile-nav-btn gg-mobile-nav-btn--ghost" (click)="closeMobileMenu()">Войти</a>
-            <a [routerLink]="startLink" class="gg-mobile-nav-btn" (click)="closeMobileMenu()">Создать персонажа</a>
+            <a
+              [routerLink]="loginLink"
+              class="gg-mobile-nav-btn gg-mobile-nav-btn--ghost"
+              (click)="closeMobileMenu()"
+              >Войти</a
+            >
+            <a [routerLink]="startLink" class="gg-mobile-nav-btn" (click)="closeMobileMenu()"
+              >Создать персонажа</a
+            >
           </div>
         </nav>
       </div>
@@ -65,12 +71,23 @@
           <span class="gg-hero-title-accent">Прокачивайся.</span>
         </h1>
         <p class="gg-hero-desc">
-          Каждая тренировка — это опыт. Копи XP, держи серию, поднимайся в лигах. Планы от тренеров, журнал, питание и прогресс — в одном приложении.
+          Каждая тренировка — это опыт. Копи XP, держи серию, поднимайся в лигах. Планы от тренеров,
+          журнал, питание и прогресс — в одном приложении.
         </p>
         <div class="gg-hero-cta">
           <a [routerLink]="startLink" class="gg-btn-hero">
             Создать персонажа
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
               <path d="M5 12h14M13 6l6 6-6 6" />
             </svg>
           </a>
@@ -92,65 +109,6 @@
           </div>
         </div>
       </div>
-
-      <div class="gg-hero-card-wrap">
-        <div class="gg-hero-card">
-          <div class="gg-hero-card-accent"></div>
-          <div class="gg-hero-card-header">
-            <div class="gg-avatar">АВ</div>
-            <div class="gg-hero-card-info">
-              <div class="gg-hero-card-name">Артём Волков</div>
-              <div class="gg-hero-card-league">Силовая лига · Дивизион II</div>
-            </div>
-            <div class="gg-lvl-box">
-              <div class="gg-lvl-label">LVL</div>
-              <div class="gg-lvl-value">12</div>
-            </div>
-          </div>
-
-          <div class="gg-xp-header">
-            <span class="gg-xp-label">Прогресс уровня</span>
-            <span class="gg-xp-value">1 360 <span class="gg-xp-value-dim">/ 2 000 XP</span></span>
-          </div>
-          <div class="gg-xp-track">
-            <div class="gg-xp-fill">
-              <div class="gg-xp-shimmer"></div>
-            </div>
-          </div>
-          <div class="gg-streak-row">
-            <div class="gg-streak-info">
-              <span class="gg-streak-emoji">🔥</span>
-              <div>
-                <div class="gg-streak-days">14 дней</div>
-                <div class="gg-streak-label">текущая серия</div>
-              </div>
-            </div>
-            <div class="gg-streak-bars">
-              <span class="gg-streak-bar gg-streak-bar--active"></span>
-              <span class="gg-streak-bar gg-streak-bar--active"></span>
-              <span class="gg-streak-bar gg-streak-bar--active"></span>
-              <span class="gg-streak-bar gg-streak-bar--active"></span>
-              <span class="gg-streak-bar gg-streak-bar--active"></span>
-              <span class="gg-streak-bar gg-streak-bar--mid"></span>
-              <span class="gg-streak-bar gg-streak-bar--inactive"></span>
-            </div>
-          </div>
-          <div class="gg-mini-stats">
-            <div class="gg-mini-stat">
-              <div class="gg-mini-stat-value gg-mini-stat-value--accent">4</div>
-              <div class="gg-mini-stat-label">тренировки</div>
-            </div>
-            <div class="gg-mini-stat">
-              <div class="gg-mini-stat-value">3 240</div>
-              <div class="gg-mini-stat-label">ккал за неделю</div>
-            </div>
-            <div class="gg-mini-stat">
-              <div class="gg-mini-stat-value">5,2 ч</div>
-              <div class="gg-mini-stat-label">под нагрузкой</div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -161,42 +119,78 @@
     </div>
     <div class="gg-intro-inner">
       <p class="gg-intro-text">
-        <span class="gg-intro-highlight">Профессиональное оборудование</span> и персональные планы от тренеров.
-        Тренируйся умнее, отслеживай прогресс и
-        <span class="gg-intro-highlight">прокачивайся в лигах</span> — каждая тренировка приносит XP.
+        <span class="gg-intro-highlight">Профессиональное оборудование</span> и персональные планы
+        от тренеров. Тренируйся умнее, отслеживай прогресс и
+        <span class="gg-intro-highlight">прокачивайся в лигах</span> — каждая тренировка приносит
+        XP.
       </p>
       <div class="gg-features">
         <article class="gg-feature">
           <div class="gg-feature-icon" aria-hidden="true">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
               <path d="M9 12l2 2 4-4" />
               <rect x="3" y="4" width="18" height="16" rx="0" />
               <path d="M3 9h18" />
             </svg>
           </div>
           <h3 class="gg-feature-title">Планы тренировок</h3>
-          <p class="gg-feature-text">Персональные программы на каждый день — упражнения, подходы, повторения и заметки тренера.</p>
+          <p class="gg-feature-text">
+            Персональные программы на каждый день — упражнения, подходы, повторения и заметки
+            тренера.
+          </p>
         </article>
         <article class="gg-feature">
           <div class="gg-feature-icon" aria-hidden="true">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
               <path d="M12 20V10" />
               <path d="M18 20V4" />
               <path d="M6 20v-4" />
             </svg>
           </div>
           <h3 class="gg-feature-title">Журнал активности</h3>
-          <p class="gg-feature-text">Фиксируй нагрузку, время и калории. Каждая запись — XP и продление серии.</p>
+          <p class="gg-feature-text">
+            Фиксируй нагрузку, время и калории. Каждая запись — XP и продление серии.
+          </p>
         </article>
         <article class="gg-feature">
           <div class="gg-feature-icon" aria-hidden="true">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
               <rect x="3" y="4" width="18" height="18" rx="0" />
               <path d="M16 2v4M8 2v4M3 10h18" />
             </svg>
           </div>
           <h3 class="gg-feature-title">Календарь прогресса</h3>
-          <p class="gg-feature-text">Месяц с отмеченными днями наглядно показывает ритм и помогает планировать восстановление.</p>
+          <p class="gg-feature-text">
+            Месяц с отмеченными днями наглядно показывает ритм и помогает планировать
+            восстановление.
+          </p>
         </article>
       </div>
     </div>
@@ -216,7 +210,9 @@
             <span class="gg-step-index">01</span>
           </div>
           <h3 class="gg-how-card-title">Создай персонажа</h3>
-          <p class="gg-how-card-text">Заполни цели и стартовые данные. Получи уровень, лигу и первый план от тренера.</p>
+          <p class="gg-how-card-text">
+            Заполни цели и стартовые данные. Получи уровень, лигу и первый план от тренера.
+          </p>
         </article>
         <article class="gg-how-card">
           <div class="gg-step-num">
@@ -224,7 +220,9 @@
             <span class="gg-step-index">02</span>
           </div>
           <h3 class="gg-how-card-title">Тренируйся и записывай</h3>
-          <p class="gg-how-card-text">Выполняй план, фиксируй результат в журнале. Каждая запись — это XP и продление серии.</p>
+          <p class="gg-how-card-text">
+            Выполняй план, фиксируй результат в журнале. Каждая запись — это XP и продление серии.
+          </p>
         </article>
         <article class="gg-how-card">
           <div class="gg-step-num">
@@ -232,26 +230,93 @@
             <span class="gg-step-index">03</span>
           </div>
           <h3 class="gg-how-card-title">Прокачивайся в лигах</h3>
-          <p class="gg-how-card-text">Набирай уровни, поднимайся в дивизионах и следи за прогрессом на графиках.</p>
+          <p class="gg-how-card-text">
+            Набирай уровни, поднимайся в дивизионах и следи за прогрессом на графиках.
+          </p>
         </article>
       </div>
     </div>
   </section>
 
   <!-- LEAGUES / PROGRESSION -->
-  <section id="leagues" class="gg-leagues">
+  <section id="leagues" class="gg-leagues theme-app">
     <div class="gg-leagues-inner">
-      <div class="gg-leagues-header">
-        <div class="gg-eyebrow">Прокачка персонажа</div>
-        <h2 class="gg-section-title">Три лиги —<br />один прогресс.</h2>
-        <p class="gg-leagues-desc">
-          Выбирай направление, копи XP и поднимайся в дивизионах. Каждая лига — отдельная ветка развития твоего персонажа.
-        </p>
+      <div class="gg-leagues-top">
+        <div class="gg-leagues-header">
+          <div class="gg-eyebrow">Прокачка персонажа</div>
+          <h2 class="gg-section-title">Три лиги —<br />один прогресс.</h2>
+          <p class="gg-leagues-desc">
+            Выбирай направление, копи XP и поднимайся в дивизионах. Каждая лига — отдельная ветка
+            развития твоего персонажа.
+          </p>
+        </div>
+
+        <div class="gg-hero-card-wrap">
+          <div class="gg-hero-card">
+            <div class="gg-hero-card-accent"></div>
+            <div class="gg-hero-card-header">
+              <div class="gg-avatar">АВ</div>
+              <div class="gg-hero-card-info">
+                <div class="gg-hero-card-name">Артём Волков</div>
+                <div class="gg-hero-card-league">Силовая лига · Дивизион II</div>
+              </div>
+              <div class="gg-lvl-box">
+                <div class="gg-lvl-label">LVL</div>
+                <div class="gg-lvl-value">12</div>
+              </div>
+            </div>
+
+            <div class="gg-xp-header">
+              <span class="gg-xp-label">Прогресс уровня</span>
+              <span class="gg-xp-value">1 360 <span class="gg-xp-value-dim">/ 2 000 XP</span></span>
+            </div>
+            <div class="gg-xp-track">
+              <div class="gg-xp-fill">
+                <div class="gg-xp-shimmer"></div>
+              </div>
+            </div>
+            <div class="gg-streak-row">
+              <div class="gg-streak-info">
+                <span class="gg-streak-emoji">🔥</span>
+                <div>
+                  <div class="gg-streak-days">14 дней</div>
+                  <div class="gg-streak-label">текущая серия</div>
+                </div>
+              </div>
+              <div class="gg-streak-bars">
+                <span class="gg-streak-bar gg-streak-bar--active"></span>
+                <span class="gg-streak-bar gg-streak-bar--active"></span>
+                <span class="gg-streak-bar gg-streak-bar--active"></span>
+                <span class="gg-streak-bar gg-streak-bar--active"></span>
+                <span class="gg-streak-bar gg-streak-bar--active"></span>
+                <span class="gg-streak-bar gg-streak-bar--mid"></span>
+                <span class="gg-streak-bar gg-streak-bar--inactive"></span>
+              </div>
+            </div>
+            <div class="gg-mini-stats">
+              <div class="gg-mini-stat">
+                <div class="gg-mini-stat-value gg-mini-stat-value--accent">4</div>
+                <div class="gg-mini-stat-label">тренировки</div>
+              </div>
+              <div class="gg-mini-stat">
+                <div class="gg-mini-stat-value">3 240</div>
+                <div class="gg-mini-stat-label">ккал за неделю</div>
+              </div>
+              <div class="gg-mini-stat">
+                <div class="gg-mini-stat-value">5,2 ч</div>
+                <div class="gg-mini-stat-label">под нагрузкой</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
       <div class="gg-path-grid">
         @for (path of paths; track path.id) {
           <article class="gg-path-card">
-            <div class="gg-path-placeholder" aria-hidden="true"></div>
+            <div class="gg-path-image-wrap">
+              <img class="gg-path-image" [src]="path.image" [alt]="path.title" loading="lazy" />
+            </div>
             <div class="gg-path-body">
               <div class="gg-path-league">
                 <span class="gg-path-league-name">{{ path.league }}</span>
@@ -264,7 +329,9 @@
                 <div class="gg-path-progress">
                   <div class="gg-path-progress-fill" [style.width.%]="path.progress"></div>
                 </div>
-                <span class="gg-path-progress-label">{{ path.progress }}% до следующего дивизиона</span>
+                <span class="gg-path-progress-label"
+                  >{{ path.progress }}% до следующего дивизиона</span
+                >
               </div>
             </div>
           </article>
@@ -333,7 +400,12 @@
         @for (program of loopPrograms; track program.loopKey) {
           <article class="gg-program-card">
             <div class="gg-program-image-wrap">
-              <img class="gg-program-image" [src]="program.image" [alt]="program.title" loading="lazy" />
+              <img
+                class="gg-program-image"
+                [src]="program.image"
+                [alt]="program.title"
+                loading="lazy"
+              />
             </div>
             <div class="gg-program-meta">
               <h3 class="gg-program-title">{{ program.title }}</h3>
@@ -343,8 +415,22 @@
         }
       </div>
       <div class="gg-program-nav">
-        <button type="button" class="gg-program-nav-btn" (click)="scrollPrograms('prev')" aria-label="Предыдущие программы">&laquo;&laquo;</button>
-        <button type="button" class="gg-program-nav-btn" (click)="scrollPrograms('next')" aria-label="Следующие программы">&raquo;&raquo;</button>
+        <button
+          type="button"
+          class="gg-program-nav-btn"
+          (click)="scrollPrograms('prev')"
+          aria-label="Предыдущие программы"
+        >
+          &laquo;&laquo;
+        </button>
+        <button
+          type="button"
+          class="gg-program-nav-btn"
+          (click)="scrollPrograms('next')"
+          aria-label="Следующие программы"
+        >
+          &raquo;&raquo;
+        </button>
       </div>
     </div>
   </section>
@@ -378,7 +464,9 @@
   <section class="gg-final-cta">
     <h2 class="gg-final-cta-title">Готов прокачаться?</h2>
     <a [routerLink]="startLink" class="gg-btn-hero gg-final-cta-action">Начать бесплатно</a>
-    <p class="gg-final-cta-desc">Первая неделя бесплатно. Создай персонажа, получи план и начни копить XP уже сегодня.</p>
+    <p class="gg-final-cta-desc">
+      Первая неделя бесплатно. Создай персонажа, получи план и начни копить XP уже сегодня.
+    </p>
   </section>
 
   <!-- FOOTER -->
@@ -417,9 +505,18 @@
     (click)="scrollToTop()"
     aria-label="Наверх"
   >
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
       <path d="M12 19V5M5 12l7-7 7 7" />
     </svg>
   </button>
-
 </div>

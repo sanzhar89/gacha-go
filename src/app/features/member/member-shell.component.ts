@@ -27,12 +27,14 @@ export class MemberShellComponent {
       userInitials: user?.initials ?? 'АВ',
       avatarGradient: GG_GRADIENTS.strength,
       avatarTextColor: GG_COLORS.accentInverse,
+      profileRoute: '/member/profile',
       navItems: [
         { label: 'Главная', route: '/member/home', icon: NAV_ICONS.home },
         { label: 'Журнал', route: '/member/journal', icon: NAV_ICONS.journal },
         { label: 'Календарь', route: '/member/calendar', icon: NAV_ICONS.calendar },
         { label: 'Питание', route: '/member/nutrition', icon: NAV_ICONS.nutrition },
         { label: 'Прогресс', route: '/member/progress', icon: NAV_ICONS.progress },
+        { label: 'Профиль', route: '/member/profile', icon: NAV_ICONS.profile },
       ],
       roleLinks: [
         { label: 'Кабинет тренера', role: 'trainer' },

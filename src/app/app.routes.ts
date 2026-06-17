@@ -71,6 +71,11 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/member/progress/progress.component').then((m) => m.ProgressComponent),
       },
+      {
+        path: 'profile',
+        loadComponent: () =>
+          import('./features/member/profile/profile.component').then((m) => m.ProfileComponent),
+      },
     ],
   },
   {

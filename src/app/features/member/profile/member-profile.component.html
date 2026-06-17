@@ -1,0 +1,130 @@
+<div class="page-header">
+  <h1 class="page-title">Профиль</h1>
+  <p class="page-subtitle">Персонаж, лига и настройки аккаунта</p>
+</div>
+
+@if (profile(); as p) {
+  <section class="profile-hero">
+    <div class="profile-hero-accent"></div>
+    <div class="profile-hero-main">
+      <div
+        class="profile-avatar"
+        [style.background]="avatarGradient"
+        [style.color]="avatarTextColor"
+      >
+        {{ p.initials }}
+      </div>
+      <div class="profile-identity">
+        <h2 class="profile-name">{{ p.name }}</h2>
+        <p class="profile-email">{{ p.email }}</p>
+        <div class="profile-badges">
+          <span class="profile-badge profile-badge--level">LVL {{ p.level }}</span>
+          <span class="profile-badge">Силовая лига · Дивизион II</span>
+          <span class="profile-badge profile-badge--muted">{{ p.goal }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="profile-xp">
+      <app-xp-bar
+        [streakDays]="p.streakDays"
+        [percent]="xpPercent()"
+        [currentXp]="p.currentXp"
+        [targetXp]="p.targetXp"
+        label="До {{ p.level + 1 }} уровня"
+        [showStreak]="false"
+      />
+    </div>
+  </section>
+
+  <div class="profile-grid">
+    <section class="profile-card">
+      <h3 class="card-title">Личные данные</h3>
+      <p class="card-desc">Имя отображается в кабинете и у тренера</p>
+
+      <label class="field-label" for="profile-name">Имя и фамилия</label>
+      <input
+        id="profile-name"
+        class="field-input"
+        type="text"
+        [ngModel]="editName()"
+        (ngModelChange)="editName.set($event)"
+        autocomplete="name"
+      />
+
+      <label class="field-label" for="profile-email">Email</label>
+      <input
+        id="profile-email"
+        class="field-input"
+        type="email"
+        [ngModel]="editEmail()"
+        (ngModelChange)="editEmail.set($event)"
+        autocomplete="email"
+      />
+
+      @if (saveMessage()) {
+        <p class="save-msg" [class.save-msg--error]="saveError()">{{ saveMessage() }}</p>
+      }
+
+      <button type="button" class="btn-primary save-btn" (click)="saveProfile()">Сохранить</button>
+    </section>
+
+    <section class="profile-card">
+      <h3 class="card-title">Сводка</h3>
+      <dl class="summary-list">
+        <div class="summary-row">
+          <dt>Тренер</dt>
+          <dd>{{ p.trainer }}</dd>
+        </div>
+        <div class="summary-row">
+          <dt>В клубе с</dt>
+          <dd>{{ p.memberSince }}</dd>
+        </div>
+        <div class="summary-row">
+          <dt>Тренировок за неделю</dt>
+          <dd>{{ p.weekWorkouts }}</dd>
+        </div>
+        <div class="summary-row">
+          <dt>Текущая серия</dt>
+          <dd>{{ p.streakDays }} дн. · рекорд {{ p.streakRecord }}</dd>
+        </div>
+      </dl>
+
+      <a routerLink="/member/progress" class="summary-link">Открыть полный прогресс →</a>
+    </section>
+
+    <section class="profile-card profile-card--wide">
+      <h3 class="card-title">Оформление</h3>
+      <p class="card-desc">Тема интерфейса сохраняется на этом устройстве</p>
+      <div class="theme-row">
+        <span class="theme-label">Тема</span>
+        <app-theme-toggle variant="labeled" />
+      </div>
+    </section>
+
+    <section class="profile-card profile-card--wide">
+      <div class="card-head">
+        <div>
+          <h3 class="card-title">Лиги персонажа</h3>
+          <p class="card-desc">Три ветки прокачки — общий уровень персонажа</p>
+        </div>
+        <a routerLink="/" fragment="leagues" class="summary-link">Подробнее о лигах</a>
+      </div>
+
+      <div class="league-list">
+        @for (league of leagues; track league.id) {
+          <article class="league-item">
+            <div class="league-top">
+              <span class="league-name">{{ league.league }}</span>
+              <span class="league-division">{{ league.division }}</span>
+            </div>
+            <div class="league-title">{{ league.title }}</div>
+            <div class="league-progress">
+              <div class="league-progress-fill" [style.width.%]="league.progress"></div>
+            </div>
+            <span class="league-progress-label">{{ league.progress }}% до следующего дивизиона</span>
+          </article>
+        }
+      </div>
+    </section>
+  </div>
+}

@@ -11,6 +11,7 @@ export interface ProgressPath {
   division: string;
   title: string;
   description: string;
+  image: string;
   xpReward: number;
   progress: number;
 }
@@ -23,6 +24,7 @@ export const LANDING_PATHS: ProgressPath[] = [
     title: 'Силовой тренинг',
     description:
       'Программы с прогрессией нагрузок и техникой. Каждая тренировка даёт XP и приближает к следующему дивизиону.',
+    image: '/assets/leagues/strength.png',
     xpReward: 120,
     progress: 68,
   },
@@ -33,6 +35,7 @@ export const LANDING_PATHS: ProgressPath[] = [
     title: 'Функционал и кардио',
     description:
       'HIIT и кардио-сессии с таймером и калориями. Держи серию — получай бонусный XP за каждый день подряд.',
+    image: '/assets/leagues/cardio.png',
     xpReward: 90,
     progress: 54,
   },
@@ -43,6 +46,7 @@ export const LANDING_PATHS: ProgressPath[] = [
     title: 'Питание и восстановление',
     description:
       'Планы БЖУ, журнал питания и дни отдыха в календаре. Без восстановления персонаж не прокачается.',
+    image: '/assets/leagues/recovery.png',
     xpReward: 60,
     progress: 41,
   },

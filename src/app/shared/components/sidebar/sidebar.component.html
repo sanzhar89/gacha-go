@@ -1,53 +1,76 @@
 <div class="sidebar-column desktop-sidebar">
   <aside class="sidebar">
-  <a routerLink="/" class="brand">
-    <span class="brand-icon"><span>G</span></span>
-    <div>
-      <span class="brand-name">GachaGo</span>
-      @if (config.roleLabel) {
-        <div class="brand-role">{{ config.roleLabel }}</div>
-      }
-    </div>
-  </a>
-
-  <nav class="nav">
-    <div class="nav-section">Меню</div>
-    @for (item of config.navItems; track item.route) {
-      <a
-        class="nav-item"
-        [routerLink]="item.route"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: item.route.endsWith('/home') || item.route.endsWith('/students') || item.route.endsWith('/posts') }"
-      >
-        <span [innerHTML]="item.icon"></span>
-        {{ item.label }}
+    <div class="sidebar-body">
+      <a routerLink="/" class="brand">
+        <span class="brand-icon"><span>G</span></span>
+        <div>
+          <span class="brand-name">GachaGo</span>
+          @if (config.roleLabel) {
+            <div class="brand-role">{{ config.roleLabel }}</div>
+          }
+        </div>
       </a>
-    }
 
-    <div class="nav-section role-section">Сменить роль</div>
-    @for (link of config.roleLinks; track link.role) {
-      <button type="button" class="role-link" (click)="switchRole(link.role)">
-        {{ link.label }}
-      </button>
-    }
-  </nav>
+      <nav class="nav">
+        <div class="nav-section">Меню</div>
+        @for (item of config.navItems; track item.route) {
+          <a
+            class="nav-item"
+            [routerLink]="item.route"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: item.route.endsWith('/home') || item.route.endsWith('/students') || item.route.endsWith('/posts') || item.route.endsWith('/profile') }"
+          >
+            <span [innerHTML]="item.icon"></span>
+            {{ item.label }}
+          </a>
+        }
 
-  <div class="user-footer">
-    <div class="user-card">
-      <div
-        class="user-avatar"
-        [style.background]="config.avatarGradient"
-        [style.color]="config.avatarTextColor"
-      >
-        {{ config.userInitials }}
-      </div>
-      <div class="user-info">
-        <div class="user-name">{{ config.userName }}</div>
-        <div class="user-sub">{{ config.userSubtitle }}</div>
-      </div>
+        <div class="nav-section role-section">Сменить роль</div>
+        @for (link of config.roleLinks; track link.role) {
+          <button type="button" class="role-link" (click)="switchRole(link.role)">
+            {{ link.label }}
+          </button>
+        }
+      </nav>
     </div>
-    <button type="button" class="logout-btn" (click)="logout()">Выйти</button>
-  </div>
+
+    <div class="user-footer">
+      @if (config.profileRoute) {
+        <a
+          [routerLink]="config.profileRoute"
+          class="user-card"
+          routerLinkActive="user-card--active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <div
+            class="user-avatar"
+            [style.background]="config.avatarGradient"
+            [style.color]="config.avatarTextColor"
+          >
+            {{ config.userInitials }}
+          </div>
+          <div class="user-info">
+            <div class="user-name">{{ config.userName }}</div>
+            <div class="user-sub">{{ config.userSubtitle }}</div>
+          </div>
+        </a>
+      } @else {
+        <div class="user-card">
+          <div
+            class="user-avatar"
+            [style.background]="config.avatarGradient"
+            [style.color]="config.avatarTextColor"
+          >
+            {{ config.userInitials }}
+          </div>
+          <div class="user-info">
+            <div class="user-name">{{ config.userName }}</div>
+            <div class="user-sub">{{ config.userSubtitle }}</div>
+          </div>
+        </div>
+      }
+      <button type="button" class="logout-btn" (click)="logout()">Выйти</button>
+    </div>
   </aside>
 </div>
 
@@ -57,7 +80,7 @@
       class="bottom-item"
       [routerLink]="item.route"
       routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: item.route.endsWith('/home') || item.route.endsWith('/students') || item.route.endsWith('/posts') }"
+      [routerLinkActiveOptions]="{ exact: item.route.endsWith('/home') || item.route.endsWith('/students') || item.route.endsWith('/posts') || item.route.endsWith('/profile') }"
     >
       <span [innerHTML]="item.icon"></span>
       <span class="bottom-label">{{ item.label }}</span>

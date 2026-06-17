@@ -109,6 +109,29 @@ export class AuthService {
     return routes[this.getCurrentRole()];
   }
 
+  updateProfile(name: string, email: string): boolean {
+    const user = this.currentUser$.value;
+    if (!user) {
+      return false;
+    }
+
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim().toLowerCase();
+    if (!trimmedName || !trimmedEmail) {
+      return false;
+    }
+
+    this.setSession(
+      {
+        name: trimmedName,
+        email: trimmedEmail,
+        initials: this.initialsFromName(trimmedName),
+      },
+      this.currentRole$.value,
+    );
+    return true;
+  }
+
   private setSession(user: AuthUser, role: UserRole): void {
     this.currentUser$.next(user);
     this.currentRole$.next(role);

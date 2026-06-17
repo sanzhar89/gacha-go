@@ -16,6 +16,7 @@ export interface ShellConfig {
   userInitials: string;
   avatarGradient: string;
   avatarTextColor: string;
+  profileRoute?: string;
   navItems: NavItem[];
   roleLinks: { label: string; role: UserRole }[];
 }
